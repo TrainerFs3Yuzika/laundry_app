@@ -26,13 +26,16 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
+            'role' => 'required', // add this line to validate the role field
             'password' => 'required|min:8',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role, // add this line to save the role field
             'password' => Hash::make($request->password),
+
         ]);
         $user->setRememberToken(Str::random(50));
         $user->save();
@@ -84,10 +87,12 @@ class UserController extends Controller
         $request->validate([
             'edit-name' => 'required|max:255',
             'edit-email' => 'required|email|unique:users,email,' . $id,
+            'edit-role' => 'required',
         ]);
 
         $user->name = $request->input('edit-name');
         $user->email = $request->input('edit-email');
+        $user->role = $request->input('edit-role');
 
         // Only update the password if a new one is provided
         if ($request->input('edit-password')) {

@@ -17,6 +17,7 @@
 </head>
 <!-- END: Head -->
 
+
 <body class="login">
     <div class="container sm:px-10">
         <div class="block xl:grid grid-cols-2 gap-4">
@@ -36,12 +37,7 @@
             <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
                 <div
                     class="my-auto mx-auto xl:ml-20 bg-white xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                    @if (session('success'))
-                    <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-18 text-grey-600">
-                        <i data-feather="check" class="w-6 h-6 mr-2"></i>
-                        {{ session('success') }}
-                    </div>
-                @endif
+
 
                 @if (session('error'))
                 <div class="rounded-md flex items-center px-5 py-4 mb-2 bg-theme-31 text-theme-6"> <i data-feather="alert-triangle" class="w-6 h-6 mr-2"></i>
@@ -93,6 +89,21 @@
     </div>
     <!-- BEGIN: JS Assets-->
     <script src="{{ asset('dist/js/app.js') }}"></script>
+    <script>
+        // toast when success or error message
+        @if (session('success'))
+                   $.toast({
+                    text: "{{ session('success') }}" ,
+                    bgColor: '#41B06E',
+                    textColor: 'white',
+                    allowToastClose: true,
+                    hideAfter: 5000,
+                    stack: 5,
+                    textAlign: 'left',
+                    position: 'top-right',
+                });
+                @endif
+    </script>
     <!-- END: JS Assets-->
 </body>
 
