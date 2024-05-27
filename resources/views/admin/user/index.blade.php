@@ -34,6 +34,13 @@
                                 placeholder="Email">
                         </div>
                         <div class="col-span-12">
+                            <label>Role</label>
+                            <select name="role" id="role" class="input w-full border mt-2 flex-1">
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                        </div>
+                        <div class="col-span-12">
                             <label>Password</label>
                             <input type="password" id="password" name="password" class="input w-full border mt-2 flex-1"
                                 placeholder="Password">
@@ -72,7 +79,14 @@
                             placeholder="Email">
                     </div>
                     <div class="col-span-12">
-                        <label>Password</label>
+                        <label>Role</label>
+                        <select name="edit-role" id="edit-role" class="input w-full border mt-2 flex-1">
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                    </div>
+                    <div class="col-span-12">
+                        <label>New Password</label>
                         <input type="password" id="edit-password" name="edit-password" class="input w-full border mt-2 flex-1"
                             placeholder="Password">
                     </div>
@@ -94,6 +108,7 @@
                 <tr>
                     <th class="border-b-2 whitespace-no-wrap">USERNAME</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">EMAIL</th>
+                    <th class="border-b-2 text-center whitespace-no-wrap">ROLE</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">STATUS</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">ACTIONS</th>
                 </tr>
@@ -106,6 +121,15 @@
                         </td>
                         <td class="border-b">
                             <div class="font-medium whitespace-no-wrap text-center">{{ $user->email }}</div>
+                        </td>
+                        <td class="border-b">
+                            <div class="flex items center justify-center text-theme-1">
+                                @if ($user->role == 'admin')
+                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> Admin
+                                @else
+                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> User
+                                @endif
+                            </div>
                         </td>
                         <td class="w-40 border-b">
                             <div class="flex items-center sm:justify-center text-theme-9">
@@ -176,6 +200,7 @@
                             $('#edit-name').val(response.user.name);
                             $('#edit-email').val(response.user.email);
                             $('#edit-id').val(response.user.id);
+                            $('#edit-role').val(response.user.role);
                             $('#edit-password').val(response.user.password);
                             $('#editUserModal').modal('show');
                         },

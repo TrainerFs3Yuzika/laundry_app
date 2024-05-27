@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 
+
 //Auth
 Route::controller('App\Http\Controllers\AuthController')->group(function () {
     Route::get('/login', 'index')->name('login');
