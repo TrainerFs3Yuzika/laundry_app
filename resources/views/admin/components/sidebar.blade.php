@@ -17,5 +17,23 @@
                 <div class="side-menu__title"> Users </div>
             </a>
         </li>
+        <li>
+            <a href="{{route("products.index")}}" class="side-menu side-menu--{{ Route::is("products.index") ? "active" : ""}}">
+                <div class="side-menu__icon"> <i data-feather="package"></i> </div>
+                <div class="side-menu__title"> Products </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route("categories.index")}}" class="side-menu side-menu--{{ Route::is("categories.index") ? "active" : ""}}">
+                <div class="side-menu__icon"> <i data-feather="tag"></i> </div>
+                <div class="side-menu__title"> Categories </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{route("transactions")}}" class="side-menu side-menu--{{ Route::is("transactions") ? "active" : ""}}">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Transaction </div>
+            </a>
+        </li>
     </ul>
 </nav>

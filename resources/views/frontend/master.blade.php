@@ -11,8 +11,8 @@
         <link href="img/favicon.ico" rel="icon">
 
         <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"> 
-        
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
         <!-- CSS Libraries -->
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -107,7 +107,7 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="#">Get Appointment</a>
+                            <a class="btn btn-custom" href="{{route('login')}}">Get Appointment</a>
                         </div>
                     </div>
                 </nav>
@@ -163,7 +163,7 @@
             </div>
         </div>
         <!-- Carousel End -->
-        
+
 
         <!-- About Start -->
         <div class="about">
@@ -266,8 +266,8 @@
             </div>
         </div>
         <!-- Service End -->
-        
-        
+
+
         <!-- Facts Start -->
         <div class="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
             <div class="container">
@@ -312,8 +312,8 @@
             </div>
         </div>
         <!-- Facts End -->
-        
-        
+
+
         <!-- Price Start -->
         <div class="price">
             <div class="container">
@@ -385,8 +385,8 @@
             </div>
         </div>
         <!-- Price End -->
-        
-        
+
+
         <!-- Location Start -->
         <div class="location">
             <div class="container">
@@ -561,8 +561,8 @@
             </div>
         </div>
         <!-- Team End -->
-        
-        
+
+
         <!-- Testimonial Start -->
         <div class="testimonial">
             <div class="container">
@@ -756,10 +756,10 @@
             </div>
         </div>
         <!-- Footer End -->
-        
+
         <!-- Back to top button -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-        
+
         <!-- Pre Loader -->
         <div id="loader" class="show">
             <div class="loader"></div>
@@ -772,7 +772,7 @@
         <script src="{{ asset('frontend/lib/owlcarousel/owl.carousel.min.js') }}"></script>
         <script src="{{ asset('frontend/lib/waypoints/waypoints.min.js') }}"></script>
         <script src="{{ asset('frontend/lib/counterup/counterup.min.js') }}"></script>
-        
+
         <!-- Contact Javascript File -->
         <script src="{{ asset('frontend/mail/jqBootstrapValidation.min.js') }}"></script>
         <script src="{{ asset('frontend/mail/contact.js') }}"></script>
