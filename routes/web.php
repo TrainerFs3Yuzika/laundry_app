@@ -24,7 +24,12 @@ Route::controller('App\Http\Controllers\AuthController')->group(function () {
     Route::get('/login', 'index')->name('login');
     Route::post('/login', 'login')->name('login.post');
     Route::get('/logout', 'logout')->name('logout');
+    Route::get('/register', 'registerIndex')->name('register');
+    Route::post('/register', 'register')->name('register.post');
 });
+
+
+
 
 //Dashboard
 Route::group(['middleware' => 'auth'], function(){
