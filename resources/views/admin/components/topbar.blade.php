@@ -173,12 +173,12 @@
         <div class="dropdown-box mt-10 absolute w-56 top-0 right-0 z-20">
             <div class="dropdown-box__content box bg-theme-38 text-white">
                 <div class="p-4 border-b border-theme-40">
-                    <div class="font-medium">Angelina Jolie</div>
-                    <div class="text-xs text-theme-41">Software Engineer</div>
+                    <div class="font-medium">{{ Auth::user()->name }}</div>
+                    <div class="text-xs text-theme-41">{{ Auth::user()->role }}</div>
                 </div>
                 <div class="p-2">
                     <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
+                    <a href="{{route('admin.users')}}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
                     <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
                     <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
                 </div>

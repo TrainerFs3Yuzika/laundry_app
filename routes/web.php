@@ -40,4 +40,20 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/users/update/{id}', 'update')->name('admin.users.update');
         Route::delete('/users/{id}', 'destroy')->name('admin.users.destroy');
     });
+
+    //product
+    Route::resource('products', App\Http\Controllers\ProductController::class)->except([]);
+
+    //category
+    Route::resource('categories', App\Http\Controllers\CategoryController::class)->except([]);
+
+    //transaction
+    Route::controller('App\Http\Controllers\TransactionController')->group(function () {
+        Route::get('/transactions', 'index')->name('transactions');
+        Route::get('/transactions/create', 'create')->name('admin.transactions.create');
+        Route::post('/transactions/store', 'store')->name('admin.transactions.store');
+        Route::get('/transactions/edit/{id}', 'edit')->name('admin.transactions.edit');
+        Route::put('/transactions/update/{id}', 'update')->name('admin.transactions.update');
+        Route::delete('/transactions/{id}', 'destroy')->name('admin.transactions.destroy');
+    });
 });

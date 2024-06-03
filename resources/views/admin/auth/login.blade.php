@@ -24,11 +24,11 @@
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
                 <div class="my-auto">
-                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                        Welcome to Laundry App
-                        <br>
-                        sign in to your account.
+                    <div class="-intro-x text-white font-medium text-4xl leading-tight mb-20"style="display: flex; justify-content: center;">
+                       <img src={{asset("frontend\img\laundry.webp")}} alt="" width="280">
+
                     </div>
+
                 </div>
             </div>
             <!-- END: Login Info -->
