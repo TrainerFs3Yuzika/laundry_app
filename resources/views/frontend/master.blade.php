@@ -106,9 +106,21 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
+                        @guest
                         <div class="ml-auto">
                             <a class="btn btn-custom" href="{{route('login')}}">Get Appointment</a>
                         </div>
+
+                        @else
+                        <div class="ml-auto">
+                            @if(Auth::user()->role == 'admin')
+                                <a class="btn btn-custom" href="{{route('admin.dashboard')}}">Dashboard</a>
+                            @elseif(Auth::user()->role == 'user')
+                                <a class="btn btn-custom" href="{{route('customer.dashboard.index')}}">Dashboard</a>
+                            @endif
+                        </div>
+
+                        @endguest
                     </div>
                 </nav>
             </div>
