@@ -19,16 +19,16 @@
     <!-- END: Head -->
     <body class="app">
         <!-- BEGIN: Mobile Menu -->
-        @include('admin.components.mobile')
+        @include('components.mobile')
         <!-- END: Mobile Menu -->
         <div class="flex">
             <!-- BEGIN: Side Menu -->
-       @include('admin.components.sidebar')
+       @include('components.sidebar')
             <!-- END: Side Menu -->
             <!-- BEGIN: Content -->
             <div class="content">
                 <!-- BEGIN: Top Bar -->
-                @include('admin.components.topbar')
+                @include('components.topbar')
                 <!-- END: Top Bar -->
                @yield('content')
             </div>

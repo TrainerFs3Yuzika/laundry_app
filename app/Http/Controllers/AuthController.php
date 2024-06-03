@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function index()
     {
-        return view('admin.auth.login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
@@ -25,11 +25,18 @@ class AuthController extends Controller
             'password.required' => 'Password tidak boleh kosong',
         ]);
 
+
+
         if (auth()->attempt($validated)) {
             $request->session()->flash('success', 'Successfully logged in!');
-            return redirect()->intended('dashboard');
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role == 'user') {
+                return redirect()->route('customer.dashboard.index');
+            }
         } else {
-            return redirect()->back()->with('error', ' Email atau Password Salah');
+            return redirect()->back()->with('error', 'Email atau Password Salah');
         }
 
     }
@@ -37,7 +44,7 @@ class AuthController extends Controller
 
     public function RegisterIndex()
     {
-        return view('admin.auth.register');
+        return view('auth.register');
     }
 
     public function register(Request $request)

@@ -1,4 +1,4 @@
-@extends('admin.components.app')
+@extends('components.app')
 @section('title', 'Products | Laundry App')
 
 @section('content')

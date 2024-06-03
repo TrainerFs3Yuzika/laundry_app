@@ -24,11 +24,13 @@
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
                 <div class="my-auto">
-                    <div class="-intro-x text-white font-medium text-4xl leading-tight mb-20"style="display: flex; justify-content: center;">
-                       <img src={{asset("frontend\img\laundry.webp")}} alt="" width="280">
-
+                    <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/3 -mt-16" src="{{ asset('frontend/img/laundry.webp') }}">
+                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
+                        BrightWash
+                        <br>
+                        sign up to your account.
                     </div>
-
+                    <div class="-intro-x mt-5 text-lg text-white">Manage all your e-commerce accounts in one place</div>
                 </div>
             </div>
             <!-- END: Login Info -->
