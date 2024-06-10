@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
-
+        
     }
 }

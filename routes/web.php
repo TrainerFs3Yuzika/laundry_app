@@ -72,9 +72,19 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
 });
 
 //Customer
-Route::group(['middleware' => ['auth', 'checkRole:user'],'prefix' => 'customer'], function(){
+Route::group(['middleware' => ['auth', 'checkRole:customer'],'prefix' => 'customer'], function(){
     Route::controller('App\Http\Controllers\Customer\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('customer.dashboard.index');
+    });
+
+    //order
+    Route::controller('App\Http\Controllers\Customer\OrderController')->group(function () {
+        Route::get('/orders', 'index')->name('customer.orders');
+        Route::get('/orders/create', 'create')->name('customer.orders.create');
+        Route::post('/orders/store', 'store')->name('customer.orders.store');
+        Route::get('/orders/edit/{id}', 'edit')->name('customer.orders.edit');
+        Route::put('/orders/update/{id}', 'update')->name('customer.orders.update');
+        Route::delete('/orders/{id}', 'destroy')->name('customer.orders.destroy');
     });
 
 });
