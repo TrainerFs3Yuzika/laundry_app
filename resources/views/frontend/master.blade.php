@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>BrightWas Laundry</title>
+        <title>{{ $title }} - BrightWash Laundry</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -31,8 +31,8 @@
                 <div class="row align-items-center">
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
-                            <a href="index.html">
-                                <h1>BrightWas<span>Laundry</span></h1>
+                            <a href="#">
+                                <h1>BW<span>Laundry</span></h1>
                                 <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
@@ -90,21 +90,21 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About</a>
-                            <a href="service.html" class="nav-item nav-link">Service</a>
-                            <a href="price.html" class="nav-item nav-link">Price</a>
-                            <a href="location.html" class="nav-item nav-link">Washing Points</a>
+                            <a href="#" class="nav-item nav-link active">Home</a>
+                            <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
+                            <a href="{{ route('service') }}" class="nav-item nav-link">Service</a>
+                            <a href="{{ route('price') }}" class="nav-item nav-link">Price</a>
+                            <a href="{{ route('location') }}" class="nav-item nav-link">Washing Points</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
-                                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                    <a href="single.html" class="dropdown-item">Detail Page</a>
-                                    <a href="team.html" class="dropdown-item">Team Member</a>
-                                    <a href="booking.html" class="dropdown-item">Schedule Booking</a>
+                                    <a href="{{ route('blog') }}" class="dropdown-item">Blog Grid</a>
+                                    <a href="{{ route('single') }}" class="dropdown-item">Detail Page</a>
+                                    <a href="{{ route('team') }}" class="dropdown-item">Team Member</a>
+                                    <a href="{{ route('booking') }}" class="dropdown-item">Schedule Booking</a>
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
                         @guest
                         <div class="ml-auto">
@@ -140,9 +140,9 @@
                             <h3>Washing & Cleaning</h3>
                             <h1>Keep Apparel Newer</h1>
                             <p>
-                                Lorem ipsum dolor sit amet elit. Phasellus ut mollis mauris. Vivamus egestas eleifend dui ac
+                                Preserve your favorite clothes with our expert laundry service. Say goodbye to fading colors and worn-out fabrics!
                             </p>
-                            <a class="btn btn-custom" href="">Explore More</a>
+                            <a class="btn btn-custom" href="{{ route('about') }}">Explore More</a>
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -153,7 +153,7 @@
                             <h3>Washing & Cleaning</h3>
                             <h1>Quality service for you</h1>
                             <p>
-                                Morbi sagittis turpis id suscipit feugiat. Suspendisse eu augue urna. Morbi sagittis orci sodales
+                                Experience top-notch laundry care tailored just for you. Let us handle the details while you enjoy fresh, clean clothes hassle-free.
                             </p>
                             <a class="btn btn-custom" href="">Explore More</a>
                         </div>
@@ -166,7 +166,7 @@
                             <h3>Washing & Cleaning</h3>
                             <h1>Quick Laundry, Easier Life</h1>
                             <p>
-                                Sed ultrices, est eget feugiat accumsan, dui nibh egestas tortor, ut rhoncus nibh ligula euismod quam
+                                Simplify your life with our swift laundry service. Say goodbye to hassle and hello to convenience!
                             </p>
                             <a class="btn btn-custom" href="">Explore More</a>
                         </div>
@@ -201,7 +201,7 @@
                                 <li><i class="far fa-check-circle"></i>Customer Satisfaction</li>
                                 <li><i class="far fa-check-circle"></i>Eco-Friendly Practices</li>
                             </ul>
-                            <a class="btn btn-custom" href="">Learn More</a>
+                            <a class="btn btn-custom" href="{{ route('about') }}">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -298,7 +298,7 @@
                             <i class="fa fa-user"></i>
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">30</h3>
-                                <p>Employed</p>
+                                <p>Staff & Workers</p>
                             </div>
                         </div>
                     </div>
@@ -316,7 +316,7 @@
                             <i class="fa fa-check"></i>
                             <div class="facts-text">
                                 <h3 data-toggle="counter-up">5000</h3>
-                                <p>Laundry Completed</p>
+                                <p>Customer</p>
                             </div>
                         </div>
                     </div>
@@ -481,7 +481,7 @@
             <div class="container">
                 <div class="section-header text-center">
                     <p>Meet Our Team</p>
-                    <h2>Our Employed</h2>
+                    <h2>Our Staff & Workers</h2>
                 </div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
@@ -490,7 +490,7 @@
                                 <img src="{{ asset('frontend/img/team-1.jpg') }}" alt="Team Image">
                             </div>
                             <div class="team-text">
-                                <h2>Hanif</h2>
+                                <h2>Donald John</h2>
                                 <p>Engineer</p>
                                 <div class="team-social">
                                     <a href=""><i class="fab fa-twitter"></i></a>
@@ -507,7 +507,7 @@
                                 <img src="{{ asset('frontend/img/team-2.jpg') }}" alt="Team Image">
                             </div>
                             <div class="team-text">
-                                <h2>Aufal</h2>
+                                <h2>Adam Phillips</h2>
                                 <p>Engineer</p>
                                 <div class="team-social">
                                     <a href=""><i class="fab fa-twitter"></i></a>
@@ -524,7 +524,7 @@
                                 <img src="{{ asset('frontend/img/team-3.jpg') }}" alt="Team Image">
                             </div>
                             <div class="team-text">
-                                <h2>Hana</h2>
+                                <h2>Thomas Olsen</h2>
                                 <p>Worker</p>
                                 <div class="team-social">
                                     <a href=""><i class="fab fa-twitter"></i></a>
@@ -541,25 +541,8 @@
                                 <img src="{{ asset('frontend/img/team-4.jpg') }}" alt="Team Image">
                             </div>
                             <div class="team-text">
-                                <h2>Anggoro</h2>
+                                <h2>James Alien</h2>
                                 <p>Worker</p>
-                                <div class="team-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <img src="{{ asset('frontend/img/team-2.jpg') }}" alt="Team Image">
-                            </div>
-                            <div class="team-text">
-                                <h2>Rahardian</h2>
-                                <p>Engineer</p>
                                 <div class="team-social">
                                     <a href=""><i class="fab fa-twitter"></i></a>
                                     <a href=""><i class="fab fa-facebook-f"></i></a>
@@ -734,11 +717,11 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-link">
                             <h2>Popular Links</h2>
-                            <a href="">About Us</a>
-                            <a href="">Contact Us</a>
-                            <a href="">Our Service</a>
-                            <a href="">Service Points</a>
-                            <a href="">Pricing Plan</a>
+                            <a href="{{ route('about') }}">About Us</a>
+                            <a href="{{ route('contact') }}">Contact Us</a>
+                            <a href="{{ route('service') }}">Our Service</a>
+                            <a href="{{ route('location') }}">Service Points</a>
+                            <a href="{{ route('price') }}">Pricing Plan</a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
@@ -764,7 +747,7 @@
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">BrightWas Laundry</a>, All Right Reserved. Designed By <a href="https://htmlcodex.com">Capstone Group 1</a></p>
+                <p>&copy; <a href="#">BrightWash Laundry</a>, All Right Reserved. Designed By <a href="https://github.com/TrainerFs3Yuzika/laundry_app">Capstone Group 1</a></p>
             </div>
         </div>
         <!-- Footer End -->

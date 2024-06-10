@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('frontend.master');
-});
+    return view('frontend.master', ['title' => 'Home']);
+})->name('home');
 
 
 
@@ -78,3 +78,40 @@ Route::group(['middleware' => ['auth', 'checkRole:user'],'prefix' => 'customer']
     });
 
 });
+
+//Other Routes
+Route::get('/about', function () {
+    return view('frontend.about', ['title' => 'About Us']);
+})->name('about');
+
+Route::get('/blog', function () {
+    return view('frontend.blog', ['title' => 'Pages']);
+})->name('blog');
+
+Route::get('/booking', function () {
+    return view('frontend.booking', ['title' => 'Schedule Booking']);
+})->name('booking');
+
+Route::get('/contact', function () {
+    return view('frontend.contact', ['title' => 'Contact Us']);
+})->name('contact');
+
+Route::get('/location', function () {
+    return view('frontend.location', ['title' => 'Washing Points']);
+})->name('location');
+
+Route::get('/price', function () {
+    return view('frontend.price', ['title' => 'Pricing']);
+})->name('price');
+
+Route::get('/service', function () {
+    return view('frontend.service', ['title' => 'Our Services']);
+})->name('service');
+
+Route::get('/single', function () {
+    return view('frontend.single', ['title' => 'Detail Page']);
+})->name('single');
+
+Route::get('/team', function () {
+    return view('frontend.team', ['title' => 'Our Team']);
+})->name('team');
