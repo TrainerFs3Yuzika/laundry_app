@@ -32,7 +32,7 @@ class AuthController extends Controller
             $user = Auth::user();
             if ($user->role == 'admin') {
                 return redirect()->route('admin.dashboard');
-            } elseif ($user->role == 'user') {
+            } elseif ($user->role == 'customer') {
                 return redirect()->route('customer.dashboard.index');
             }
         } else {
@@ -58,7 +58,7 @@ class AuthController extends Controller
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'role' => 'user', // default role is 'user
+            'role' => 'customer', // default role is 'user
             'password' => Hash::make($request->password),
         ]);
 

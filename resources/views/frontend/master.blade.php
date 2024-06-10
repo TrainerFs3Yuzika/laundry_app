@@ -115,7 +115,7 @@
                         <div class="ml-auto">
                             @if(Auth::user()->role == 'admin')
                                 <a class="btn btn-custom" href="{{route('admin.dashboard')}}">Dashboard</a>
-                            @elseif(Auth::user()->role == 'user')
+                            @elseif(Auth::user()->role == 'customer')
                                 <a class="btn btn-custom" href="{{route('customer.dashboard.index')}}">Dashboard</a>
                             @endif
                         </div>

@@ -124,11 +124,9 @@
                         </td>
                         <td class="border-b">
                             <div class="flex items center justify-center text-theme-1">
-                                @if ($user->role == 'admin')
-                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> Admin
-                                @else
-                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> User
-                                @endif
+
+                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> {{ $user->role }}
+
                             </div>
                         </td>
                         <td class="w-40 border-b">

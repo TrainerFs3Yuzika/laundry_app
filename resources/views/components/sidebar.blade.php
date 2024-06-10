@@ -38,7 +38,7 @@
         </li>
         @endif
 
-        @if(auth()->user()->role == 'user')
+        @if(auth()->user()->role == 'customer')
         <li>
             <a href="{{ route('customer.dashboard.index') }}" class="side-menu {{ Route::is('customer.dashboard.index') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="home"></i></div>
@@ -49,6 +49,12 @@
             <a href="{{ route('transactions') }}" class="side-menu {{ Route::is('transactions') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="package"></i></div>
                 <div class="side-menu__title">Transaction</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('customer.orders') }}" class="side-menu {{ Route::is('customer.orders') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
+                <div class="side-menu__title">Pesan Laundry</div>
             </a>
         </li>
         @endif
