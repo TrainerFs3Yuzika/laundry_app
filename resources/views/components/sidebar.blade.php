@@ -19,9 +19,9 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('products.index') }}" class="side-menu {{ Route::is('products.index') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('services.index') }}" class="side-menu {{ Route::is('services.index') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="package"></i></div>
-                <div class="side-menu__title">Products</div>
+                <div class="side-menu__title">Service</div>
             </a>
         </li>
         <li>
@@ -36,6 +36,11 @@
                 <div class="side-menu__title">Transaction</div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.orders') }}" class="side-menu {{ Route::is('admin.orders') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
+                <div class="side-menu__title">Orders</div>
+            </a>
         @endif
 
         @if(auth()->user()->role == 'customer')
@@ -45,16 +50,22 @@
                 <div class="side-menu__title">Dashboard</div>
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ route('transactions') }}" class="side-menu {{ Route::is('transactions') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="package"></i></div>
                 <div class="side-menu__title">Transaction</div>
             </a>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ route('customer.orders') }}" class="side-menu {{ Route::is('customer.orders') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
                 <div class="side-menu__title">Pesan Laundry</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('customer.orders.history') }}" class="side-menu {{ Route::is('customer.orders.history') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
+                <div class="side-menu__title">Riwayat Pesanan</div>
             </a>
         </li>
         @endif

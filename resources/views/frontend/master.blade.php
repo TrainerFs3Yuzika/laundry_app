@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ $title }} - BrightWash Laundry</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="Free Website Template" name="keywords">
-        <meta content="Free Website Template" name="description">
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+<head>
+    <meta charset="utf-8">
+    <title>BrightWash Laundry</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
 
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-        <!-- CSS Libraries -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="{{ asset('frontend/lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
-        <link href="{{ asset('frontend/lib/animate/animate.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-        <!-- Template Stylesheet -->
-        <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
-    </head>
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('frontend/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
-    <body>
-        <!-- Top Bar Start -->
-        <div class="top-bar">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-4 col-md-12">
-                        <div class="logo">
-                            <a href="#">
-                                <h1>BW<span>Laundry</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
-                            </a>
-                        </div>
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('frontend/css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-12">
+                    <div class="logo">
+                        <a href="#">
+                            <h1>BW<span>Laundry</span></h1>
+                            <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                        </a>
                     </div>
-                    <div class="col-lg-8 col-md-7 d-none d-lg-block">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="top-bar-item">
-                                    <div class="top-bar-icon">
-                                        <i class="far fa-clock"></i>
-                                    </div>
-                                    <div class="top-bar-text">
-                                        <h3>Opening Hour</h3>
-                                        <p>Mon - Fri, 8:00 - 19:00</p>
-                                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Opening Hour</h3>
+                                    <p>Mon - Fri, 8:00 - 19:00</p>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="top-bar-item">
-                                    <div class="top-bar-icon">
-                                        <i class="fa fa-phone-alt"></i>
-                                    </div>
-                                    <div class="top-bar-text">
-                                        <h3>Call Us</h3>
-                                        <p>+628 5728 9964 99</p>
-                                    </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="fa fa-phone-alt"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Call Us</h3>
+                                    <p>+628 5728 9964 99</p>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="top-bar-item">
-                                    <div class="top-bar-icon">
-                                        <i class="far fa-envelope"></i>
-                                    </div>
-                                    <div class="top-bar-text">
-                                        <h3>Email Us</h3>
-                                        <p>brightwas@laundry.com</p>
-                                    </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Email Us</h3>
+                                    <p>brightwas@laundry.com</p>
                                 </div>
                             </div>
                         </div>
@@ -77,323 +78,301 @@
                 </div>
             </div>
         </div>
-        <!-- Top Bar End -->
+    </div>
+    <!-- Top Bar End -->
 
-        <!-- Nav Bar Start -->
-        <div class="nav-bar">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                    <a href="#" class="navbar-brand">MENU</a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                        <div class="navbar-nav mr-auto">
-                            <a href="#" class="nav-item nav-link active">Home</a>
-                            <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
-                            <a href="{{ route('service') }}" class="nav-item nav-link">Service</a>
-                            <a href="{{ route('price') }}" class="nav-item nav-link">Price</a>
-                            <a href="{{ route('location') }}" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="{{ route('blog') }}" class="dropdown-item">Blog Grid</a>
-                                    <a href="{{ route('single') }}" class="dropdown-item">Detail Page</a>
-                                    <a href="{{ route('team') }}" class="dropdown-item">Team Member</a>
-                                    <a href="{{ route('booking') }}" class="dropdown-item">Schedule Booking</a>
-                                </div>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="#" class="nav-item nav-link active">Home</a>
+                        <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
+                        <a href="{{ route('service') }}" class="nav-item nav-link">Service</a>
+                        <a href="{{ route('price') }}" class="nav-item nav-link">Price</a>
+                        <a href="{{ route('location') }}" class="nav-item nav-link">Washing Points</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu">
+                                <a href="{{ route('blog') }}" class="dropdown-item">Blog Grid</a>
+                                <a href="{{ route('single') }}" class="dropdown-item">Detail Page</a>
+                                <a href="{{ route('team') }}" class="dropdown-item">Team Member</a>
+                                <a href="{{ route('booking') }}" class="dropdown-item">Schedule Booking</a>
                             </div>
-                            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
                         </div>
-                        @guest
+                        <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                    </div>
+                    @guest
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="{{route('login')}}">Get Appointment</a>
+                            <a class="btn btn-custom" href="{{ route('login') }}">Get Appointment</a>
                         </div>
-
-                        @else
+                    @else
                         <div class="ml-auto">
-                            @if(Auth::user()->role == 'admin')
-                                <a class="btn btn-custom" href="{{route('admin.dashboard')}}">Dashboard</a>
+                            @if (Auth::user()->role == 'admin')
+                                <a class="btn btn-custom" href="{{ route('admin.dashboard') }}">Dashboard</a>
                             @elseif(Auth::user()->role == 'customer')
-                                <a class="btn btn-custom" href="{{route('customer.dashboard.index')}}">Dashboard</a>
+                                <a class="btn btn-custom" href="{{ route('customer.dashboard.index') }}">Dashboard</a>
                             @endif
                         </div>
 
-                        @endguest
-                    </div>
-                </nav>
-            </div>
+                    @endguest
+                </div>
+            </nav>
         </div>
-        <!-- Nav Bar End -->
+    </div>
+    <!-- Nav Bar End -->
 
 
-        <!-- Carousel Start -->
-        <div class="carousel">
-            <div class="container-fluid">
-                <div class="owl-carousel">
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="{{ asset('frontend/img/carousel-1.jpg') }}" alt="Image">
-                        </div>
-                        <div class="carousel-text">
-                            <h3>Washing & Cleaning</h3>
-                            <h1>Keep Apparel Newer</h1>
-                            <p>
-                                Preserve your favorite clothes with our expert laundry service. Say goodbye to fading colors and worn-out fabrics!
-                            </p>
-                            <a class="btn btn-custom" href="{{ route('about') }}">Explore More</a>
-                        </div>
+    <!-- Carousel Start -->
+    <div class="carousel">
+        <div class="container-fluid">
+            <div class="owl-carousel">
+                <div class="carousel-item">
+                    <div class="carousel-img">
+                        <img src="{{ asset('frontend/img/carousel-1.jpg') }}" alt="Image">
                     </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="{{ asset('frontend/img/carousel-2.jpg') }}" alt="Image">
-                        </div>
-                        <div class="carousel-text">
-                            <h3>Washing & Cleaning</h3>
-                            <h1>Quality service for you</h1>
-                            <p>
-                                Experience top-notch laundry care tailored just for you. Let us handle the details while you enjoy fresh, clean clothes hassle-free.
-                            </p>
-                            <a class="btn btn-custom" href="">Explore More</a>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="carousel-img">
-                            <img src="{{ asset('frontend/img/carousel-3.jpg') }}" alt="Image">
-                        </div>
-                        <div class="carousel-text">
-                            <h3>Washing & Cleaning</h3>
-                            <h1>Quick Laundry, Easier Life</h1>
-                            <p>
-                                Simplify your life with our swift laundry service. Say goodbye to hassle and hello to convenience!
-                            </p>
-                            <a class="btn btn-custom" href="">Explore More</a>
-                        </div>
+                    <div class="carousel-text">
+                        <h3>Washing & Cleaning</h3>
+                        <h1>Keep Apparel Newer</h1>
+                        <p>
+                            Preserve your favorite clothes with our expert laundry service. Say goodbye to fading colors
+                            and worn-out fabrics!
+                        </p>
+                        <a class="btn btn-custom" href="{{ route('about') }}">Explore More</a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <!-- Carousel End -->
-
-
-        <!-- About Start -->
-        <div class="about">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="about-img">
-                            <img src="{{ asset('frontend/img/about.jpg') }}" alt="Image">
-                        </div>
+                <div class="carousel-item">
+                    <div class="carousel-img">
+                        <img src="{{ asset('frontend/img/carousel-2.jpg') }}" alt="Image">
                     </div>
-                    <div class="col-lg-6">
-                        <div class="section-header text-left">
-                            <p>About Us</p>
-                            <h2>washing and cleaning</h2>
-                        </div>
-                        <div class="about-content">
-                            <p>
-                            At BrightWash Laundry, we believe that a clean wardrobe leads to a brighter day. Established with the goal of providing top-notch laundry services, we are dedicated to delivering excellence in every garment we handle.
-                            </p>
-                            <ul>
-                                <li><i class="far fa-check-circle"></i>Quality</li>
-                                <li><i class="far fa-check-circle"></i>Convenience</li>
-                                <li><i class="far fa-check-circle"></i>Customer Satisfaction</li>
-                                <li><i class="far fa-check-circle"></i>Eco-Friendly Practices</li>
-                            </ul>
-                            <a class="btn btn-custom" href="{{ route('about') }}">Learn More</a>
-                        </div>
+                    <div class="carousel-text">
+                        <h3>Washing & Cleaning</h3>
+                        <h1>Quality service for you</h1>
+                        <p>
+                            Experience top-notch laundry care tailored just for you. Let us handle the details while you
+                            enjoy fresh, clean clothes hassle-free.
+                        </p>
+                        <a class="btn btn-custom" href="">Explore More</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-img">
+                        <img src="{{ asset('frontend/img/carousel-3.jpg') }}" alt="Image">
+                    </div>
+                    <div class="carousel-text">
+                        <h3>Washing & Cleaning</h3>
+                        <h1>Quick Laundry, Easier Life</h1>
+                        <p>
+                            Simplify your life with our swift laundry service. Say goodbye to hassle and hello to
+                            convenience!
+                        </p>
+                        <a class="btn btn-custom" href="">Explore More</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- About End -->
+    </div>
+    <!-- Carousel End -->
 
 
-        <!-- Service Start -->
-        <div class="service">
-            <div class="container">
-                <div class="section-header text-center">
-                    <p>What We Do?</p>
-                    <h2>Premium Washing Services</h2>
+    <!-- About Start -->
+    <div class="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img src="{{ asset('frontend/img/about.jpg') }}" alt="Image">
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-car-wash-1"></i>
-                            <h3>Standard Laundry Service</h3>
-                            <p>Wash, Dry, and Fold</p>
+                <div class="col-lg-6">
+                    <div class="section-header text-left">
+                        <p>About Us</p>
+                        <h2>washing and cleaning</h2>
+                    </div>
+                    <div class="about-content">
+                        <p>
+                            At BrightWash Laundry, we believe that a clean wardrobe leads to a brighter day. Established
+                            with the goal of providing top-notch laundry services, we are dedicated to delivering
+                            excellence in every garment we handle.
+                        </p>
+                        <ul>
+                            <li><i class="far fa-check-circle"></i>Quality</li>
+                            <li><i class="far fa-check-circle"></i>Convenience</li>
+                            <li><i class="far fa-check-circle"></i>Customer Satisfaction</li>
+                            <li><i class="far fa-check-circle"></i>Eco-Friendly Practices</li>
+                        </ul>
+                        <a class="btn btn-custom" href="{{ route('about') }}">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Service Start -->
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>What We Do?</p>
+                <h2>Premium Washing Services</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash-1"></i>
+                        <h3>Standard Laundry Service</h3>
+                        <p>Wash, Dry, and Fold</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash"></i>
+                        <h3>Dry Cleaning</h3>
+                        <p>Professional Care for Delicate Garments</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-vacuum-cleaner"></i>
+                        <h3>Specialty Services</h3>
+                        <p>Stain Removal</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-seat"></i>
+                        <h3>Seats Washing</h3>
+                        <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-service"></i>
+                        <h3>Commercial Laundry</h3>
+                        <p>Tailored Solutions for Businesses</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-service-2"></i>
+                        <h3>Eco-Friendly Laundry</h3>
+                        <p>Sustainable Cleaning Solutions</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-car-wash"></i>
+                        <h3>Household Items</h3>
+                        <p>Curtains and Drapes</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-item">
+                        <i class="flaticon-brush-1"></i>
+                        <h3>Premium Services</h3>
+                        <p>Express Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+    <!-- Facts Start -->
+    <div class="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="facts-item">
+                        <i class="fa fa-map-marker-alt"></i>
+                        <div class="facts-text">
+                            <h3 data-toggle="counter-up">5</h3>
+                            <p>Service Points</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-car-wash"></i>
-                            <h3>Dry Cleaning</h3>
-                            <p>Professional Care for Delicate Garments</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="facts-item">
+                        <i class="fa fa-user"></i>
+                        <div class="facts-text">
+                            <h3 data-toggle="counter-up">30</h3>
+                            <p>Staff & Workers</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-vacuum-cleaner"></i>
-                            <h3>Specialty Services</h3>
-                            <p>Stain Removal</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="facts-item">
+                        <i class="fa fa-users"></i>
+                        <div class="facts-text">
+                            <h3 data-toggle="counter-up">1500</h3>
+                            <p>Happy Clients</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-seat"></i>
-                            <h3>Seats Washing</h3>
-                            <p>Lorem ipsum dolor sit amet elit. Phase nec preti facils ornare velit non metus tortor</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-car-service"></i>
-                            <h3>Commercial Laundry</h3>
-                            <p>Tailored Solutions for Businesses</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-car-service-2"></i>
-                            <h3>Eco-Friendly Laundry</h3>
-                            <p>Sustainable Cleaning Solutions</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-car-wash"></i>
-                            <h3>Household Items</h3>
-                            <p>Curtains and Drapes</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="service-item">
-                            <i class="flaticon-brush-1"></i>
-                            <h3>Premium Services</h3>
-                            <p>Express Service</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="facts-item">
+                        <i class="fa fa-check"></i>
+                        <div class="facts-text">
+                            <h3 data-toggle="counter-up">5000</h3>
+                            <p>Customer</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Service End -->
+    </div>
+    <!-- Facts End -->
 
 
-        <!-- Facts Start -->
-        <div class="facts" data-parallax="scroll" data-image-src="img/facts.jpg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="facts-item">
-                            <i class="fa fa-map-marker-alt"></i>
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up">5</h3>
-                                <p>Service Points</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="facts-item">
-                            <i class="fa fa-user"></i>
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up">30</h3>
-                                <p>Staff & Workers</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="facts-item">
-                            <i class="fa fa-users"></i>
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up">1500</h3>
-                                <p>Happy Clients</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="facts-item">
-                            <i class="fa fa-check"></i>
-                            <div class="facts-text">
-                                <h3 data-toggle="counter-up">5000</h3>
-                                <p>Customer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Price Start -->
+    <div class="price">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Washing Plan</p>
+                <h2>Choose Your Plan</h2>
             </div>
-        </div>
-        <!-- Facts End -->
+            <div class="row justify-content-center">
+                @php
+                    // Filter layanan yang aktif
+                    $activeServices = $services->filter(function ($service) {
+                        return $service->status === 'active';
+                    });
+                    $count = $activeServices->count();
+
+                    // dd($activeServices, $count)
+                @endphp
+                @foreach ($services as $service)
+                    @if ($service->status === 'active')
+                        <div class="col-md-{{ $count == 1 ? '6 offset-md-3' : ($count == 2 ? '6' : '4') }}">
+                            <div class="price-item {{ $count == 2 ? 'text-center' : '' }}">
+                                <div class="price-header">
+                                    <h3>{{ $service->name_service }}</h3>
+                                    <h2><strong>{{ formatRupiah($service->price) }}</strong></h2>
+                                </div>
+                                <div class="price-body">
+                                    <ul>
+                                        @foreach ($service->description as $desc)
+                                            <li><i class="far fa-check-circle"></i>{{ $desc }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="price-footer">
+                                    <a class="btn btn-custom" href="{{route("customer.orders")}}">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
 
 
-        <!-- Price Start -->
-        <div class="price">
-            <div class="container">
-                <div class="section-header text-center">
-                    <p>Washing Plan</p>
-                    <h2>Choose Your Plan</h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Personal Laundry Services</h3>
-                                <h2><span>Rp.</span><strong>25</strong><span>.000</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Eco-Friendly Laundry</li>
-                                    <li><i class="far fa-check-circle"></i>Dry Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Specialty Services</li>
-                                    <li><i class="far fa-times-circle"></i>Guarantee</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom" href="">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <h3>Commercial Laundry Services</h3>
-                                <h2><span>Rp.</span><strong>35</strong><span>.000</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Hotels and Hospitality</li>
-                                    <li><i class="far fa-check-circle"></i>Restaurants and Cafés</li>
-                                    <li><i class="far fa-check-circle"></i>Spas and Gyms</li>
-                                    <li><i class="far fa-check-circle"></i>Corporate Services</li>
-                                    <li><i class="far fa-times-circle"></i>Guarantee</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom" href="">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <h3>Household Items Cleaning</h3>
-                                <h2><span>Rp.</span><strong>50</strong><span>.000</span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i>Bedding and Linens</li>
-                                    <li><i class="far fa-check-circle"></i>Curtains and Drapes</li>
-                                    <li><i class="far fa-check-circle"></i>Rugs and Mats</li>
-                                    <li><i class="far fa-check-circle"></i>Deep Cleaning</li>
-                                    <li><i class="far fa-check-circle"></i>Guarantee</li>
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                                <a class="btn btn-custom" href="">Book Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <!-- Price End -->
@@ -456,10 +435,12 @@
                             <h3>Request for a brightwas laundry</h3>
                             <form>
                                 <div class="control-group">
-                                    <input type="text" class="form-control" placeholder="Name" required="required" />
+                                    <input type="text" class="form-control" placeholder="Name"
+                                        required="required" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control" placeholder="Email" required="required" />
+                                    <input type="email" class="form-control" placeholder="Email"
+                                        required="required" />
                                 </div>
                                 <div class="control-group">
                                     <textarea class="form-control" placeholder="Description" required="required"></textarea>
@@ -572,7 +553,8 @@
                             <h3>Client 1</h3>
                             <h4>Profession</h4>
                             <p>
-                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor auctor gravid
+                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu
+                                metus tortor auctor gravid
                             </p>
                         </div>
                     </div>
@@ -582,7 +564,8 @@
                             <h3>Client 2</h3>
                             <h4>Profession</h4>
                             <p>
-                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor auctor gravid
+                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu
+                                metus tortor auctor gravid
                             </p>
                         </div>
                     </div>
@@ -592,7 +575,8 @@
                             <h3>Client 3</h3>
                             <h4>Profession</h4>
                             <p>
-                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor auctor gravid
+                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu
+                                metus tortor auctor gravid
                             </p>
                         </div>
                     </div>
@@ -602,7 +586,8 @@
                             <h3>Client 4</h3>
                             <h4>Profession</h4>
                             <p>
-                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu metus tortor auctor gravid
+                                Lorem ipsum dolor sit amet elit. Phasel preti mi facilis ornare velit non vulputa. Aliqu
+                                metus tortor auctor gravid
                             </p>
                         </div>
                     </div>
@@ -633,7 +618,9 @@
                             <div class="blog-text">
                                 <h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam eleife. Nam in arcu sit amet massa ferment quis enim. Nunc  augue velit metus congue eget semper
+                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam
+                                    eleife. Nam in arcu sit amet massa ferment quis enim. Nunc augue velit metus congue
+                                    eget semper
                                 </p>
                             </div>
                             <div class="blog-meta">
@@ -656,7 +643,9 @@
                             <div class="blog-text">
                                 <h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam eleife. Nam in arcu sit amet massa ferment quis enim. Nunc  augue velit metus congue eget semper
+                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam
+                                    eleife. Nam in arcu sit amet massa ferment quis enim. Nunc augue velit metus congue
+                                    eget semper
                                 </p>
                             </div>
                             <div class="blog-meta">
@@ -679,7 +668,9 @@
                             <div class="blog-text">
                                 <h3><a href="#">Lorem ipsum dolor sit amet</a></h3>
                                 <p>
-                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam eleife. Nam in arcu sit amet massa ferment quis enim. Nunc  augue velit metus congue eget semper
+                                    Lorem ipsum dolor sit amet elit. Pellent iaculis blandit lorem, quis convall diam
+                                    eleife. Nam in arcu sit amet massa ferment quis enim. Nunc augue velit metus congue
+                                    eget semper
                                 </p>
                             </div>
                             <div class="blog-meta">
@@ -747,7 +738,8 @@
                 </div>
             </div>
             <div class="container copyright">
-                <p>&copy; <a href="#">BrightWash Laundry</a>, All Right Reserved. Designed By <a href="https://github.com/TrainerFs3Yuzika/laundry_app">Capstone Group 1</a></p>
+                <p>&copy; <a href="#">BrightWash Laundry</a>, All Right Reserved. Designed By <a
+                        href="https://github.com/TrainerFs3Yuzika/laundry_app">Capstone Group 1</a></p>
             </div>
         </div>
         <!-- Footer End -->
@@ -774,5 +766,6 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('frontend/js/main.js') }}"></script>
-    </body>
+</body>
+
 </html>
