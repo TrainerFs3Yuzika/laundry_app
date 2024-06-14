@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.master', ['title' => 'Home']);
-})->name('home');
+// Route::get('/', function () {
+//     return view('frontend.master', ['title' => 'Home']);
+// })->name('home');
 
-
+Route::controller('App\Http\Controllers\Frontend\MasterController')->group(function () {
+    Route::get('/', 'index')->name('home');
+});
 
 //Auth
 Route::controller('App\Http\Controllers\AuthController')->group(function () {
@@ -29,7 +31,7 @@ Route::controller('App\Http\Controllers\AuthController')->group(function () {
 });
 
 //Dashboard
-Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
+Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::controller('App\Http\Controllers\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('admin.dashboard');
     });
@@ -44,7 +46,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
     });
 
     //product
-    Route::resource('products', App\Http\Controllers\ProductController::class)->except([]);
+    Route::resource('services', App\Http\Controllers\ServiceController::class)->except([]);
 
     //Categories
     Route::resource('categories', App\Http\Controllers\CategoryController::class)->except([]);
@@ -57,6 +59,12 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
         Route::get('/transactions/edit/{id}', 'edit')->name('admin.transactions.edit');
         Route::put('/transactions/update/{id}', 'update')->name('admin.transactions.update');
         Route::delete('/transactions/{id}', 'destroy')->name('admin.transactions.destroy');
+    });
+
+    //order
+    Route::controller('App\Http\Controllers\Admin\OrderController')->group(function () {
+        Route::get('/orders', 'index')->name('admin.orders');
+        Route::put('/orders/{id}/update-status', 'updateStatus')->name('admin.orders.updateStatus');
     });
 
     //Role
@@ -72,7 +80,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function(){
 });
 
 //Customer
-Route::group(['middleware' => ['auth', 'checkRole:customer'],'prefix' => 'customer'], function(){
+Route::group(['middleware' => ['auth', 'checkRole:customer'], 'prefix' => 'customer'], function () {
     Route::controller('App\Http\Controllers\Customer\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('customer.dashboard.index');
     });
@@ -80,14 +88,19 @@ Route::group(['middleware' => ['auth', 'checkRole:customer'],'prefix' => 'custom
     //order
     Route::controller('App\Http\Controllers\Customer\OrderController')->group(function () {
         Route::get('/orders', 'index')->name('customer.orders');
-        Route::get('/orders/create', 'create')->name('customer.orders.create');
         Route::post('/orders/store', 'store')->name('customer.orders.store');
-        Route::get('/orders/edit/{id}', 'edit')->name('customer.orders.edit');
-        Route::put('/orders/update/{id}', 'update')->name('customer.orders.update');
-        Route::delete('/orders/{id}', 'destroy')->name('customer.orders.destroy');
+        // Route::get('/orders/snap-token', 'getSnapToken')->name('customer.orders.getSnapToken');
+        // Route::post('/midtrans/notification', 'notificationHandler')->name('midtrans.notification')->middleware('verify.midtrans');
+        Route::get('/orders/history', 'history')->name('customer.orders.history');
+
+
     });
 
+
 });
+
+
+
 
 //Other Routes
 Route::get('/about', function () {

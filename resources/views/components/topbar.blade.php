@@ -4,12 +4,9 @@
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
     <div class="intro-x relative mr-3 sm:mr-6">
-        <div class="search hidden sm:block">
-            <input type="text" class="search__input input placeholder-theme-13" placeholder="Search...">
-            <i data-feather="search" class="search__icon"></i>
-        </div>
+
         <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-        <div class="search-result">
+        {{-- <div class="search-result">
             <div class="search-result__content">
                 <div class="search-result__content__title">Pages</div>
                 <div class="mb-5">
@@ -87,7 +84,11 @@
                     <div class="ml-auto w-48 truncate text-gray-600 text-xs text-right">Smartphone &amp; Tablet</div>
                 </a>
             </div>
-        </div>
+        </div> --}}
+        {{-- button back to landing page --}}
+        <a href="/" >
+        <button class="button w-32 mr-2 mb-2 flex items-center justify-center bg-theme-1 text-white"> Back to Home </button>
+    </a>
     </div>
     <!-- END: Search -->
     <!-- BEGIN: Notifications -->
