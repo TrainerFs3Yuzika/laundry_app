@@ -8,19 +8,19 @@
         </h2>
     </div>
 
-    @if(session('success'))
+    @if (session('success'))
         <div class="alert alert-success mt-4">
             {{ session('success') }}
         </div>
     @endif
 
-    @if(session('error'))
+    @if (session('error'))
         <div class="alert alert-danger mt-4">
             {{ session('error') }}
         </div>
     @endif
 
-    <div class="intro-y box mt-5">
+    {{-- <div class="intro-y box mt-5">
         <div class="overflow-x-auto">
             <table class="table">
                 <thead>
@@ -65,5 +65,67 @@
                 </tbody>
             </table>
         </div>
+    </div> --}}
+    <!-- BEGIN: Datatable -->
+    <div class="intro-y datatable-wrapper box p-5 mt-5">
+        <table class="table table-report table-report--bordered display datatable w-full">
+            <thead>
+                <tr>
+                    <th class="border-b-2 whitespace-no-wrap">ORDER ID</th>
+                    <th class="border-b-2 whitespace-no-wrap">CUSTOMER NAME</th>
+                    <th class="border-b-2 whitespace-no-wrap">SERVICE NAME</th>
+                    <th class="border-b-2 text-center whitespace-no-wrap">STATUS</th>
+                    <th class="border-b-2 text-center whitespace-no-wrap">ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orders as $order)
+                    <tr>
+                        <td class="border-b">
+                            <div class="font-medium">Order #{{ $order->id }}</div>
+                            <div class="text-gray-600 text-xs">{{ $order->created_at->format('d M Y') }}</div>
+                        </td>
+
+                        <td class="border-b">
+                            <div class="font-medium whitespace-no-wrap"> {{ $order->user->name }}</div>
+                        </td>
+                        <td class="border-b">
+                            @foreach ($order->items as $item)
+                                <div class="font-medium whitespace-no-wrap">{{ $item->service->name_service }}</div>
+                                <div class="text-gray-600 text-xs whitespace-no-wrap">{{ $item->quantity }} kg x
+                                    {{ formatRupiah($item->price) }}</div>
+                            @endforeach
+                        </td>
+                        <td class="text-center border-b">
+                            @if ($order->status == 'paid')
+                                <div
+                                    class="py-2 px-2 rounded-full text-xs bg-green-600 text-white cursor-pointer font-medium">
+                                    {{ ucfirst($order->status) }}</div>
+                            @elseif ($order->status == 'pending')
+                                <div
+                                    class="py-2 px-2 rounded-full text-xs bg-theme-11 text-white cursor-pointer font-medium">
+                                    {{ ucfirst($order->status) }}</div>
+                            @else
+                                <div
+                                    class="py-2 px-2 rounded-full text-xs bg-theme-6 text-white cursor-pointer font-medium">
+                                    {{ ucfirst($order->status) }}</div>
+                            @endif
+                        <td class="border-b w-5">
+                            <div class="flex sm:justify-center items-center">
+                                <a class="flex items-center mr-3 edit-btn" data-id=""
+                                    href="javascript:;">
+                                    <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit
+                                </a>
+                                <a class="flex items-center text-theme-6 delete-btn" data-id=""
+                                    href="javascript:;">
+                                    <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                                </a>
+                            </div>
+                        </td>
+
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 @endsection

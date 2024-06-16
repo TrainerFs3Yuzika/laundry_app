@@ -6,15 +6,16 @@
         <h2 class="text-lg font-medium mr-auto">
             Order History
         </h2>
-    </div>  
+    </div>
     <div class="intro-y datatable-wrapper box p-5 mt-5">
-        <table class="table table-report table-report--bordered display datatable w-full">
+        <table class="table table-report table-report--bordered display datatable w-full" id="dataTable">
             <thead>
                 <tr>
                     <th class="border-b-2 text-center whitespace-no-wrap">ORDER ID</th>
                     <th class="border-b-2 whitespace-no-wrap">SERVICE NAME</th>
-                    <th class="border-b-2  whitespace-no-wrap">TOTAL PAYMENT</th>
+                    <th class="border-b-2 whitespace-no-wrap">TOTAL PAYMENT</th>
                     <th class="border-b-2 text-center whitespace-no-wrap">STATUS</th>
+                    
                     <th class="border-b-2 text-center whitespace-no-wrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -25,34 +26,36 @@
                         <div class="font-medium">Order #{{ $order->id }}</div>
                         <div class="text-gray-600 text-xs">{{ $order->created_at->format('d M Y') }}</div>
                     </td>
-                    @foreach ($order->items as $item)
                     <td class="border-b">
+                        @foreach ($order->items as $item)
                         <div class="font-medium whitespace-no-wrap">{{ $item->service->name_service }}</div>
                         <div class="text-gray-600 text-xs whitespace-no-wrap">{{ $item->quantity }} kg x {{ formatRupiah($item->price) }}</div>
                         @endforeach
                     </td>
-
-                    <td class="font-medium "><strong>{{ formatRupiah($order->total_price) }}</strong></td>
+                    <td class="font-medium text-sm "><strong>{{ formatRupiah($order->total_price) }}</strong></td>
                     <td class="text-center border-b">
                         @if($order->status == 'paid')
-                        <div class="py-2 rounded-full text-xs bg-green-600 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
+                        <div class="py-2 px-2 rounded-full text-xs bg-green-600 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
                         @elseif($order->status == 'pending')
-                        <div class="py-2 rounded-full text-xs bg-theme-11 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
+                        <div class="py-2 px-2 rounded-full text-xs bg-theme-11 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
                         @else
-                        <div class="py-2 rounded-full text-xs bg-theme-6 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
+                        <div class="py-2 px-2 rounded-full text-xs bg-theme-6 text-white cursor-pointer font-medium">{{ ucfirst($order->status) }}</div>
                         @endif
                     </td>
                     <td class="border-b w-5">
                         <div class="flex sm:justify-center items-center">
-                            <a href=""> <button class="button w-20 mr-1 mx-2 mb-2 bg-theme-1 text-white">Invoice</button></a>
+                            <a href="{{route('customer.orders.invoice', $order->id)}}"> <button class="button w-20 mr-1 mx-2  bg-theme-1 text-white">Invoice</button></a>
                             @if($order->status != 'paid')
-                            <a href=""> <button class="button w-20 mr-1 mx-2 mb-2 bg-theme-6 text-white">Pay</button></a>
+                            <a href="{{route('customer.payment', $order->id)}}"> <button class="button w-20 mr-1 mx-2  bg-theme-6 text-white">Pay</button></a>
+                            @else
+                            <button class="button w-20 mr-1 mx-2 bg-green-600 text-white">Paid</button>
                             @endif
+
                         </div>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
-            @endforeach
         </table>
     </div>
 

@@ -63,7 +63,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('customer.orders.history') }}" class="side-menu {{ Route::is('customer.orders.history') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('customer.orders.history') }}" class="side-menu {{ Route::is('customer.orders.history') || Route::is('customer.orders.invoice') || Route::is('customer.payment') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
                 <div class="side-menu__title">Riwayat Pesanan</div>
             </a>

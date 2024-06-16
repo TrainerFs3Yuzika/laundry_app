@@ -32,7 +32,7 @@ Route::controller('App\Http\Controllers\AuthController')->group(function () {
 
 //Dashboard
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
-    Route::controller('App\Http\Controllers\DashboardController')->group(function () {
+    Route::controller('App\Http\Controllers\Admin\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('admin.dashboard');
     });
     //Users
@@ -89,17 +89,18 @@ Route::group(['middleware' => ['auth', 'checkRole:customer'], 'prefix' => 'custo
     Route::controller('App\Http\Controllers\Customer\OrderController')->group(function () {
         Route::get('/orders', 'index')->name('customer.orders');
         Route::post('/orders/store', 'store')->name('customer.orders.store');
-        // Route::get('/orders/snap-token', 'getSnapToken')->name('customer.orders.getSnapToken');
-        // Route::post('/midtrans/notification', 'notificationHandler')->name('midtrans.notification')->middleware('verify.midtrans');
+        Route::get('/invoice/{order}', 'invoice')->name('customer.orders.invoice');
         Route::get('/orders/history', 'history')->name('customer.orders.history');
-
-
+        Route::get('/payment/{order}', 'pay')->name('customer.payment');
     });
+
 
 
 });
 
 
+//midtrans
+Route::post('midtrans/notification', 'App\Http\Controllers\Customer\OrderController@notificationHandler');
 
 
 //Other Routes
