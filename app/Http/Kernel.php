@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'checkRole' => \App\Http\Middleware\CheckRole::class,
         'verify.midtrans' => \App\Http\Middleware\VerifyMidtrans::class,
+        'breadcrumb' => \App\Http\Middleware\Breadcrumb::class,
     ];
 }

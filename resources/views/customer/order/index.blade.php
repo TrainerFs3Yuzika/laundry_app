@@ -12,12 +12,16 @@
             showCancelButton: true,
             cancelButtonText: 'Close',
             confirmButtonText: 'Proceed to Payment',
-            willClose: () => {
-                window.location.reload();
+            buttonsStyling: true,
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '{{ route('customer.orders.history')}}';
             }
         });
     });
-</script>
+    </script>
+
 @endif
 
 @if (session('error'))
@@ -165,6 +169,7 @@
                     <div class="col-span-12">
                         <h3 class="font-medium text-base">Customer Details</h3>
                         <p><strong>Name:</strong> {{ $user->name }}</p>
+                        <p><strong>Email:</strong> {{ $user->email }}</p>   
                         <p><strong>Phone:</strong> {{ $user->phone }}</p>
                         <p><strong>Address:</strong> {{ $user->address }}</p>
                     </div>

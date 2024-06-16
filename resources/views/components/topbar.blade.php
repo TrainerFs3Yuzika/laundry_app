@@ -1,6 +1,66 @@
 <div class="top-bar">
     <!-- BEGIN: Breadcrumb -->
-    <div class="-intro-x breadcrumb mr-auto hidden sm:flex"> <a href="" class="">Application</a> <i data-feather="chevron-right" class="breadcrumb__icon"></i> <a href="" class="breadcrumb--active">Dashboard</a> </div>
+    <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
+        <a href="{{ url('/') }}" class="">Home</a>
+        <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        @php
+            $segments = Request::segments();
+            $url = '';
+            $routes = [
+                'admin' => [
+                    'title' => 'Dashboard',
+                    'route' => 'admin.dashboard'
+                ],
+                'users' => [
+                    'title' => 'Users',
+                    'route' => 'admin.users'
+                ],
+                'services' => [
+                    'title' => 'Service',
+                    'route' => 'services.index'
+                ],
+                'categories' => [
+                    'title' => 'Categories',
+                    'route' => 'categories.index'
+                ],
+                'transactions' => [
+                    'title' => 'Transaction',
+                    'route' => 'transactions'
+                ],
+                'orders' => [
+                    'title' => 'Orders',
+                    'route' => 'admin.orders'
+                ],
+                'customer' => [
+                    'title' => 'Dashboard',
+                    'route' => 'customer.dashboard.index'
+                ],
+                'pesan-laundry' => [
+                    'title' => 'Pesan Laundry',
+                    'route' => 'customer.orders'
+                ],
+                'riwayat-pesanan' => [
+                    'title' => 'Riwayat Pesanan',
+                    'route' => 'customer.orders.history'
+                ]
+            ];
+        @endphp
+        @foreach ($segments as $segment)
+            @php
+                $url .= '/' . $segment;
+                $routeInfo = $routes[$segment] ?? null;
+                $title = $routeInfo['title'] ?? ucfirst($segment);
+            @endphp
+            @if ($loop->last) {{-- Check if it is the last segment --}}
+                <a href="{{ $routeInfo ? route($routeInfo['route']) : url($url) }}" class="breadcrumb--active">{{ $title }}</a>
+            @else
+                <a href="{{ $routeInfo ? route($routeInfo['route']) : url($url) }}" class="">{{ $title }}</a>
+                <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+            @endif
+        @endforeach
+    </div>
+
+
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
     <div class="intro-x relative mr-3 sm:mr-6">

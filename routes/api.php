@@ -19,3 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+// midtrans notification
+Route::post('midtrans/notification', 'App\Http\Controllers\Customer\PaymentController@notificationHandler');
+
+

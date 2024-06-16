@@ -14,7 +14,11 @@ class Order extends Model
         'customer_phone',
         'customer_address',
         'payment_status',
+        'total_price',
+        'user_id',
     ];
+
+    protected $guarded = [];
 
     public function items()
     {
@@ -26,4 +30,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+
+
 }
+
