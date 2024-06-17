@@ -59,11 +59,13 @@
             </div>
             <div class="grid grid-cols-12 gap-5 mt-5">
                 @foreach ($services as $service)
+                @if($service->status == 'active')
                     <div class="col-span-12 sm:col-span-4 xxl:col-span-3 box p-5 cursor-pointer zoom-in">
                         <div class="font-medium text-base">{{ $service->name_service }}</div>
                         <div class="text-theme-3"> <strong>{{ formatRupiah($service->price) }}</strong></div>
                     </div>
-                @endforeach
+                @endif
+            @endforeach
             </div>
         </div>
         <!-- END: Item List -->
@@ -169,7 +171,7 @@
                     <div class="col-span-12">
                         <h3 class="font-medium text-base">Customer Details</h3>
                         <p><strong>Name:</strong> {{ $user->name }}</p>
-                        <p><strong>Email:</strong> {{ $user->email }}</p>   
+                        <p><strong>Email:</strong> {{ $user->email }}</p>
                         <p><strong>Phone:</strong> {{ $user->phone }}</p>
                         <p><strong>Address:</strong> {{ $user->address }}</p>
                     </div>
@@ -202,7 +204,7 @@
         <input type="hidden" name="cart" id="order-cart">
     </form>
 
-    @if (session('success'))
+    {{-- @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -212,7 +214,7 @@
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
-    @endif
+    @endif --}}
 @endsection
 
 @push('script')

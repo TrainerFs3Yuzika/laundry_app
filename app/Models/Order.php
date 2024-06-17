@@ -16,6 +16,11 @@ class Order extends Model
         'payment_status',
         'total_price',
         'user_id',
+        'tracking_number',
+        'status_order',
+        'rating',
+        'review'
+
     ];
 
     protected $guarded = [];

@@ -41,11 +41,27 @@
                 <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
                 <div class="side-menu__title">Orders</div>
             </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.ratings') }}" class="side-menu {{ Route::is('admin.ratings') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-feather="star"></i></div>
+                <div class="side-menu__title">Ratings & Reviews</div>
+            </a>
+        </li>
+
+
+        {{-- setting --}}
+        <li>
+            <a href="{{ route('admin.settings') }}" class="side-menu {{ Route::is('admin.settings') ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon"><i data-feather="settings"></i></div>
+                <div class="side-menu__title">Settings</div>
+            </a>
+        </li>
         @endif
 
         @if(auth()->user()->role == 'customer')
         <li>
-            <a href="{{ route('customer.dashboard.index') }}" class="side-menu {{ Route::is('customer.dashboard.index') ? 'side-menu--active' : '' }}">
+            <a href="{{ route('customer.dashboard.index') }}" class="side-menu {{ Route::is('customer.dashboard.index') || Route::is('customer.trackOrder') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="home"></i></div>
                 <div class="side-menu__title">Dashboard</div>
             </a>
