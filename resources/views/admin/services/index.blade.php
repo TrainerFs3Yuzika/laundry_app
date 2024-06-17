@@ -46,7 +46,8 @@
 
                                 </div>
                             </div>
-                            <button type="button" id="add-description" class="button bg-theme-1 text-white mt-2">Add More</button>
+                            <button type="button" id="add-description" class="button bg-theme-1 text-white mt-2">Add
+                                More</button>
                         </div>
                         <div class="col-span-12">
                             <div class="mt-3">
@@ -81,14 +82,24 @@
                 <input type="hidden" id="edit-id" name="id">
                 <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                     <div class="col-span-12">
-                        <label>service Name</label>
+                        <label>Service Name</label>
                         <input type="text" id="edit-name" name="name_service" class="input w-full border mt-2 flex-1"
                             placeholder="service Name">
                     </div>
                     <div class="col-span-12">
                         <label>Price</label>
-                        <input type="text" id="edit-price" name="price" class="input w-full border mt-2 flex-1"
+                        {{-- <input type="text" id="edit-price" name="price" class="input pr-12 w-full border col-span-4"
                             placeholder="Price">
+                        <div
+                            class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600">
+                            /Kg</div> --}}
+                            <div class="relative mt-2">
+                                <input type="text" id="edit-price" name="price"
+                                    class="input pr-12 w-full border col-span-4" placeholder="Price">
+                                <div
+                                    class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600">
+                                    /Kg</div>
+                            </div>
                     </div>
                     <div class="col-span-12">
                         <label>Description</label>
@@ -98,14 +109,16 @@
                                     class="input w-full border mt-2 flex-1" placeholder="Description">
                             </div>
                         </div>
-                        <button type="button" id="add-edit-description" class="button bg-theme-1 text-white mt-2">Add More</button>
+                        <button type="button" id="add-edit-description" class="button bg-theme-1 text-white mt-2">Add
+                            More</button>
                     </div>
                     <div class="col-span-12">
                         <div class="mt-3">
                             <label>Active Status</label>
                             <div class="mt-2">
                                 <input type="hidden" name="status" value="inactive">
-                                <input type="checkbox" name="status" value="active" class="input input--switch border" checked>
+                                <input type="checkbox" name="status" value="active" class="input input--switch border"
+                                    checked>
                             </div>
                         </div>
                     </div>
@@ -137,19 +150,21 @@
                 @foreach ($services as $service)
                     <tr>
                         <td class="border-b">
-                            <a href="" class="font-medium whitespace-no-wrap text-center">{{ $service->name_service }}</a>
+                            <a href=""
+                                class="font-medium whitespace-no-wrap text-center">{{ $service->name_service }}</a>
                         </td>
                         <td class="border-b">
                             <div class="font-medium whitespace-no-wrap ">
                                 @foreach ($service->description as $desc)
-                                <div class="flex font-medium whitespace-no-wrap">
-                                    <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{$desc}}
-                                </div>
+                                    <div class="flex font-medium whitespace-no-wrap">
+                                        <i data-feather="check-square" class="w-4 h-4 mr-2"></i> {{ $desc }}
+                                    </div>
                                 @endforeach
                             </div>
                         </td>
                         <td class="border-b">
-                            <div class="font-medium whitespace-no-wrap text-center text-theme-1"><strong>{{ formatRupiah($service->price) }}</strong></div>
+                            <div class="font-medium whitespace-no-wrap text-center text-theme-1">
+                                <strong>{{ formatRupiah($service->price)}}/Kg</strong></div>
                         </td>
                         <td class="w-40 border-b">
 

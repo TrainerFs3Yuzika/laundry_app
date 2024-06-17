@@ -64,7 +64,18 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     //order
     Route::controller('App\Http\Controllers\Admin\OrderController')->group(function () {
         Route::get('/orders', 'index')->name('admin.orders');
-        Route::put('/orders/{id}/update-status', 'updateStatus')->name('admin.orders.updateStatus');
+        Route::post('/orders/update-status/{id}', 'updateStatus')->name('admin.orders.updateStatus');
+    });
+
+    //setting
+    Route::controller('App\Http\Controllers\Admin\SettingController')->group(function () {
+        Route::get('/settings', 'index')->name('admin.settings');
+        Route::put('/settings/update', 'update')->name('admin.settings.update');
+    });
+
+    //ratings
+    Route::controller('App\Http\Controllers\Admin\RatingController')->group(function () {
+        Route::get('/ratings', 'index')->name('admin.ratings');
     });
 
     //Role
@@ -83,6 +94,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
 Route::group(['middleware' => ['auth', 'checkRole:customer'], 'prefix' => 'customer'], function () {
     Route::controller('App\Http\Controllers\Customer\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('customer.dashboard.index');
+        Route::post('/track-order',  'trackOrder')->name('customer.trackOrder');
     });
 
     //order
@@ -92,6 +104,7 @@ Route::group(['middleware' => ['auth', 'checkRole:customer'], 'prefix' => 'custo
         Route::get('/invoice/{order}', 'invoice')->name('customer.orders.invoice');
         Route::get('/orders/history', 'history')->name('customer.orders.history');
         Route::get('/payment/{order}', 'pay')->name('customer.payment');
+        Route::patch('/orders/{order}/rating', 'updateRating')->name('customer.orders.updateRating');
     });
 
 
