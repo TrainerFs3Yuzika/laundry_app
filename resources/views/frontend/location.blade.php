@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Opening Hour</h3>
-                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                        <p>Mon - Fri, 8:00 - 19:00</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Call Us</h3>
-                                        <p>+012 345 6789</p>
+                                        <p>+628 5728 9964 99</p>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Email Us</h3>
-                                        <p>info@example.com</p>
+                                        <p>brightwash@laundry.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -95,9 +95,9 @@
                             <a href="{{ route('about') }}" class="nav-item nav-link">About</a>
                             <a href="{{ route('service') }}" class="nav-item nav-link">Service</a>
                             <a href="{{ route('price') }}" class="nav-item nav-link">Price</a>
-                            <a href="#" class="nav-item nav-link active">Washing Points</a>
+                            <a href="#" class="nav-item nav-link active">Laundry Points</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <!-- <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="{{ route('blog') }}" class="dropdown-item">Blog Grid</a>
                                     <a href="{{ route('single') }}" class="dropdown-item">Detail Page</a>
@@ -105,11 +105,11 @@
                                     <a href="{{ route('booking') }}" class="dropdown-item">Schedule Booking</a>
                                 </div>
                             </div>
-                            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a>
+                            <a href="{{ route('contact') }}" class="nav-item nav-link">Contact</a> -->
                         </div>
                         @guest
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="{{route('login')}}">Get Appointment</a>
+                            <a class="btn btn-custom" href="{{route('login')}}">Login</a>
                         </div>
 
                         @else
@@ -152,17 +152,17 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="section-header text-left">
-                            <p>Washing Points</p>
-                            <h2>Car Washing & Care Points</h2>
+                            <p>Laundry Points</p>
+                            <h2>BrightWas Laundry</h2>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="location-item">
                                     <i class="fa fa-map-marker-alt"></i>
                                     <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
+                                        <h3>Laundry Point</h3>
+                                        <p>123 Street, Semarang, Indonesia</p>
+                                        <p><strong>Call:</strong>+628 5728 9964 99</p>
                                     </div>
                                 </div>
                             </div>
@@ -170,9 +170,9 @@
                                 <div class="location-item">
                                     <i class="fa fa-map-marker-alt"></i>
                                     <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
+                                        <h3>Laundry Point</h3>
+                                        <p>123 Street, Bandung, Indonesia</p>
+                                        <p><strong>Call:</strong>+628 5728 9964 99</p>
                                     </div>
                                 </div>
                             </div>
@@ -180,9 +180,9 @@
                                 <div class="location-item">
                                     <i class="fa fa-map-marker-alt"></i>
                                     <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
+                                        <h3>laundry Point</h3>
+                                        <p>123 Street, Jakarta, Indonesia</p>
+                                        <p><strong>Call:</strong>+628 5728 9964 99</p>
                                     </div>
                                 </div>
                             </div>
@@ -190,16 +190,16 @@
                                 <div class="location-item">
                                     <i class="fa fa-map-marker-alt"></i>
                                     <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
+                                        <h3>Laundry Point</h3>
+                                        <p>123 Street, Tangerang, Indonesia</p>
+                                        <p><strong>Call:</strong>+628 5728 9964 99</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5">
-                        <div class="location-form">
+                        <!-- <div class="location-form">
                             <h3>Request for a car wash</h3>
                             <form>
                                 <div class="control-group">
@@ -215,7 +215,7 @@
                                     <button class="btn btn-custom" type="submit">Send Request</button>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -225,59 +225,59 @@
         
         <!-- Footer Start -->
         <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-contact">
-                            <h2>Get In Touch</h2>
-                            <p><i class="fa fa-map-marker-alt"></i>123 Street, New York, USA</p>
-                            <p><i class="fa fa-phone-alt"></i>+012 345 67890</p>
-                            <p><i class="fa fa-envelope"></i>info@example.com</p>
-                            <div class="footer-social">
-                                <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn" href=""><i class="fab fa-youtube"></i></a>
-                                <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-link">
-                            <h2>Popular Links</h2>
-                            <a href="{{ route('about') }}">About Us</a>
-                            <a href="{{ route('contact') }}">Contact Us</a>
-                            <a href="{{ route('service') }}">Our Service</a>
-                            <a href="{{ route('location') }}">Service Points</a>
-                            <a href="{{ route('price') }}">Pricing Plan</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-link">
-                            <h2>Useful Links</h2>
-                            <a href="">Terms of use</a>
-                            <a href="">Privacy policy</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-newsletter">
-                            <h2>Newsletter</h2>
-                            <form>
-                                <input class="form-control" placeholder="Full Name">
-                                <input class="form-control" placeholder="Email">
-                                <button class="btn btn-custom">Submit</button>
-                            </form>
-                        </div>
-                    </div>
+        <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-3 col-md-6 mx-auto">
+                <div class="footer-contact">
+                    <h2>Get In Touch</h2>
+                    <p><i class="fa fa-map-marker-alt"></i>123 Street, Semarang, Indonesia</p>
+                    <p><i class="fa fa-phone-alt"></i>+628 5728 9964 99</p>
+                    <p><i class="fa fa-envelope"></i>brightwas@laundry.com</p>
+                    <!-- <div class="footer-social">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div> -->
                 </div>
             </div>
-            <div class="container copyright">
-                <p>&copy; <a href="#">BrightWash Laundry</a>, All Right Reserved. Designed By <a href="https://github.com/TrainerFs3Yuzika/laundry_app">Capstone Group 1</a></p>
+            <div class="col-lg-3 col-md-6 mx-auto">
+                <div class="footer-link">
+                    <h2>Popular Links</h2>
+                    <a href="{{ route('about') }}">About Us</a>
+                    <!-- <a href="{{ route('contact') }}">Contact Us</a> -->
+                    <a href="{{ route('service') }}">Our Service</a>
+                    <a href="{{ route('location') }}">Service Points</a>
+                    <a href="{{ route('price') }}">Pricing Plan</a>
+                </div>
             </div>
         </div>
+                <!-- <div class="col-lg-3 col-md-6"> -->
+                    <!-- <div class="footer-link">
+                        <h2>Useful Links</h2>
+                        <a href="">Terms of use</a>
+                        <a href="">Privacy policy</a>
+                        <a href="">Cookies</a>
+                        <a href="">Help</a>
+                        <a href="">FQAs</a>
+                    </div> -->
+                <!-- </div>
+                <div class="col-lg-3 col-md-6"> -->
+                    <!-- <div class="footer-newsletter">
+                        <h2>Newsletter</h2>
+                        <form>
+                            <input class="form-control" placeholder="Full Name">
+                            <input class="form-control" placeholder="Email">
+                            <button class="btn btn-custom">Submit</button>
+                        </form>
+                    </div> -->
+                <!-- </div> -->
+        <div class="container copyright">
+            <p>&copy; <a href="#">BrightWash Laundry</a>, All Right Reserved. Designed By <a
+                    href="https://github.com/TrainerFs3Yuzika/laundry_app">Capstone Group 1</a></p>
+        </div>
+    </div>
         <!-- Footer End -->
         
         <!-- Back to top button -->
