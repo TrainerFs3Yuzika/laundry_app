@@ -61,9 +61,10 @@ class OrderController extends Controller
             $taxRate = 0.10; // Tax rate 10%
             $order = new Order();
             $order->user_id = auth()->id();
-            $subtotal = array_reduce($cart, function ($sum, $item) {
+            $subtotal= array_reduce($cart, function ($sum, $item) {
                 return $sum + ($item['price'] * $item['qty']);
             }, 0);
+
             $taxAmount = $subtotal * $taxRate;
             $order->total_price = $subtotal + $taxAmount;
             $order->save();
@@ -93,9 +94,12 @@ class OrderController extends Controller
     {
         // Hitung total harga termasuk pajak
         $taxRate = 0.10; // 10%
-        $totalPrice = $order->items->reduce(function ($carry, $item) use ($taxRate) {
-            return $carry + ($item->price * $item->quantity) + ($item->price * $item->quantity * $taxRate);
-        }, 0);
+        $totalPrice = $order->items->sum(function ($item) use ($taxRate) {
+            $taxAmount = $item->price * $taxRate;
+            return ($item->price + $taxAmount) * $item->quantity;
+        });
+
+        // DD($totalPrice);
 
         // Konfigurasi Midtrans
         Config::$serverKey = config('midtrans.server_key');
@@ -106,7 +110,7 @@ class OrderController extends Controller
         // Buat detail transaksi
         $params = [
             'transaction_details' => [
-                'order_id' => 'ORD' . $order->id,
+                'order_id' => 'TRXX' . $order->id,
                 'gross_amount' => $totalPrice,
             ],
             'customer_details' => [
@@ -151,7 +155,7 @@ class OrderController extends Controller
             $orderId = $notif->order_id;
 
             // Remove "TRX" prefix to get the actual order ID
-            $orderId = str_replace('ORD', '', $orderId);
+            $orderId = str_replace('TRXX', '', $orderId);
 
             Log::info('Midtrans Notification Details', [
                 'transaction_status' => $transactionStatus,

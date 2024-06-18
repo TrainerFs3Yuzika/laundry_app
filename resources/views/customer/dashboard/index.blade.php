@@ -128,7 +128,20 @@
 @endsection
 
 @push('script')
-    <script>
+<script>
+     @if (session('success'))
+                   $.toast({
+                    text: "{{ session('success') }}" ,
+                    bgColor: '#41B06E',
+                    textColor: 'white',
+                    allowToastClose: true,
+                    hideAfter: 5000,
+                    stack: 5,
+                    textAlign: 'left',
+                    position: 'top-right',
+                });
+                @endif
+  
         $(document).ready(function() {
             $('#tracking-form').on('submit', function(e) {
                 e.preventDefault();

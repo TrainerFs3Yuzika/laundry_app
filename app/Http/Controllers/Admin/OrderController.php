@@ -13,8 +13,10 @@ class OrderController extends Controller
     {
         $users = User::all();
 
-        $query = Order::with('items', 'user');
+        // Start the query with necessary relations loaded
+        $query = Order::with(['user', 'items.service']);
 
+        // Apply filters based on the request input
         if ($request->filled('user_id')) {
             $query->where('user_id', $request->user_id);
         }
@@ -28,6 +30,7 @@ class OrderController extends Controller
         }
 
         if ($request->filled('min_price')) {
+            // Assuming there is a 'total_price' field to filter on
             $query->where('total_price', '>=', $request->min_price);
         }
 
@@ -35,10 +38,12 @@ class OrderController extends Controller
             $query->where('total_price', '<=', $request->max_price);
         }
 
-        $orders = $query->get();
+        // Apply sorting to the query
+        $orders = $query->orderBy('created_at', 'desc')->get(); // Only order by created_at in descending order
 
         return view('admin.orders.index', compact('orders', 'users'));
     }
+
 
     public function updateStatus(Request $request, $id)
     {
