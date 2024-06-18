@@ -2,7 +2,6 @@
 @section('title', 'Users | Laundry App')
 
 @section('content')
-
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             List of Users
@@ -15,89 +14,92 @@
         </div>
 
         <!-- modal add user -->
-        <div class="modal" id="addUserModal">
-            <div class="modal__content">
-                <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                    <h2 class="font-medium text-base mr-auto">New User</h2>
+        <div class="modal" id="addUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal__content modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                        <h2 class="font-medium text-base mr-auto">New User</h2>
+                    </div>
+                    <form id="add-user-form">
+                        @csrf
+                        <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+                            <div class="col-span-12">
+                                <label>Username</label>
+                                <input type="text" id="name" name="name" class="input w-full border mt-2 flex-1"
+                                    placeholder="Username">
+                            </div>
+                            <div class="col-span-12">
+                                <label>Email</label>
+                                <input type="email" id="email" name="email" class="input w-full border mt-2 flex-1"
+                                    placeholder="Email">
+                            </div>
+                            <div class="col-span-12">
+                                <label>Role</label>
+                                <select name="role" id="role" class="input w-full border mt-2 flex-1">
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                            </div>
+                            <div class="col-span-12">
+                                <label>Password</label>
+                                <input type="password" id="password" name="password" class="input w-full border mt-2 flex-1"
+                                    placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="px-5 py-3 text-right border-t border-gray-200">
+                            <button type="button" data-dismiss="modal"
+                                class="button w-32 border text-gray-700 mr-1">Cancel</button>
+                            <button type="submit" id="create-user" class="button w-32 bg-theme-1 text-white">Create
+                                User</button>
+                        </div>
+                    </form>
                 </div>
-                <form id="add-user-form">
+            </div>
+        </div>
+    </div>
+
+    <!-- modal edit user -->
+    <div class="modal" id="editUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal__content modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                    <h2 class="font-medium text-base mr-auto">Edit User</h2>
+                </div>
+                <form id="edit-user-form">
                     @csrf
+                    <input type="hidden" id="edit-id" name="id">
                     <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
                         <div class="col-span-12">
                             <label>Username</label>
-                            <input type="text" id="name" name="name" class="input w-full border mt-2 flex-1"
+                            <input type="text" id="edit-name" name="edit-name" class="input w-full border mt-2 flex-1"
                                 placeholder="Username">
                         </div>
                         <div class="col-span-12">
                             <label>Email</label>
-                            <input type="email" id="email" name="email" class="input w-full border mt-2 flex-1"
+                            <input type="email" id="edit-email" name="edit-email" class="input w-full border mt-2 flex-1"
                                 placeholder="Email">
                         </div>
                         <div class="col-span-12">
                             <label>Role</label>
-                            <select name="role" id="role" class="input w-full border mt-2 flex-1">
+                            <select name="edit-role" id="edit-role" class="input w-full border mt-2 flex-1">
                                 <option value="admin">Admin</option>
-                                <option value="user">User</option>
+                                <option value="customer">Customer</option>
                             </select>
                         </div>
                         <div class="col-span-12">
-                            <label>Password</label>
-                            <input type="password" id="password" name="password" class="input w-full border mt-2 flex-1"
+                            <label>New Password</label>
+                            <input type="password" id="edit-password" name="edit-password" class="input w-full border mt-2 flex-1"
                                 placeholder="Password">
                         </div>
                     </div>
                     <div class="px-5 py-3 text-right border-t border-gray-200">
                         <button type="button" data-dismiss="modal"
                             class="button w-32 border text-gray-700 mr-1">Cancel</button>
-                        <button type="submit" id="create-user" class="button w-32 bg-theme-1 text-white">Create
+                        <button type="submit" id="update-user-button" class="button w-32 bg-theme-1 text-white">Update
                             User</button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-
-    <!-- modal edit user -->
-    <div class="modal" id="editUserModal">
-        <div class="modal__content">
-            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
-                <h2 class="font-medium text-base mr-auto">Edit User</h2>
-            </div>
-            <form id="edit-user-form">
-                @csrf
-                {{-- @method('PUT') --}}
-                <input type="hidden" id="edit-id" name="id">
-                <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
-                    <div class="col-span-12">
-                        <label>Username</label>
-                        <input type="text" id="edit-name" name="edit-name" class="input w-full border mt-2 flex-1"
-                            placeholder="Username">
-                    </div>
-                    <div class="col-span-12">
-                        <label>Email</label>
-                        <input type="email" id="edit-email" name="edit-email" class="input w-full border mt-2 flex-1"
-                            placeholder="Email">
-                    </div>
-                    <div class="col-span-12">
-                        <label>Role</label>
-                        <select name="edit-role" id="edit-role" class="input w-full border mt-2 flex-1">
-                            <option value="admin">Admin</option>
-                            <option value="user">User</option>
-                        </select>
-                    </div>
-                    <div class="col-span-12">
-                        <label>New Password</label>
-                        <input type="password" id="edit-password" name="edit-password" class="input w-full border mt-2 flex-1"
-                            placeholder="Password">
-                    </div>
-                </div>
-                <div class="px-5 py-3 text-right border-t border-gray-200">
-                    <button type="button" data-dismiss="modal"
-                        class="button w-32 border text-gray-700 mr-1">Cancel</button>
-                    <button type="submit" id="update-user-button" class="button w-32 bg-theme-1 text-white">Update
-                        User</button>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -124,9 +126,7 @@
                         </td>
                         <td class="border-b">
                             <div class="flex items center justify-center text-theme-1">
-
-                                    <i data-feather="user" class="w-4 h-5 mr-2"></i> {{ $user->role }}
-
+                                <i data-feather="user" class="w-4 h-5 mr-2"></i> {{ $user->role }}
                             </div>
                         </td>
                         <td class="w-40 border-b">
@@ -156,6 +156,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             $(document).ready(function() {
+                // Handle create user
                 $('#create-user').click(function(e) {
                     e.preventDefault();
                     $.ajax({
@@ -188,9 +189,9 @@
                     });
                 });
 
+                // Handle edit user
                 $('.edit-btn').click(function() {
                     var userId = $(this).data('id');
-                    console.log(userId);
                     $.ajax({
                         type: 'GET',
                         url: '/users/edit/' + userId,
@@ -199,19 +200,18 @@
                             $('#edit-email').val(response.user.email);
                             $('#edit-id').val(response.user.id);
                             $('#edit-role').val(response.user.role);
-                            $('#edit-password').val(response.user.password);
+                            $('#edit-password').val('');
                             $('#editUserModal').modal('show');
                         },
-
                         error: function(xhr, status, error) {
                             console.error('Error fetching user data: ' + error);
                         }
                     });
                 });
 
+                // Handle update user
                 $('#update-user-button').click(function(e) {
                     e.preventDefault();
-
                     $.ajax({
                         type: 'PUT',
                         url: '/users/update/' + $('#edit-id').val(),
@@ -229,31 +229,30 @@
                             });
                         },
                         error: function(response) {
-                        if (response.responseJSON.errors && response.responseJSON.errors
-                            .email) {
-                            swal.fire({
-                                title: "Error!",
-                                text: response.responseJSON.errors.email[0],
-                                icon: "error",
-                                button: "OK",
-                            });
-                        } else if (response.responseJSON.errors) {
-                            const firstErrorKey = Object.keys(response.responseJSON.errors)[0];
-                            swal.fire({
-                                title: "Error!",
-                                text: response.responseJSON.errors[firstErrorKey][0],
-                                icon: "error",
-                                button: "OK",
-                            });
+                            if (response.responseJSON.errors && response.responseJSON.errors.email) {
+                                swal.fire({
+                                    title: "Error!",
+                                    text: response.responseJSON.errors.email[0],
+                                    icon: "error",
+                                    button: "OK",
+                                });
+                            } else if (response.responseJSON.errors) {
+                                const firstErrorKey = Object.keys(response.responseJSON.errors)[0];
+                                swal.fire({
+                                    title: "Error!",
+                                    text: response.responseJSON.errors[firstErrorKey][0],
+                                    icon: "error",
+                                    button: "OK",
+                                });
                             }
                         }
                     });
                 });
 
+                // Handle delete user
                 $('.delete-btn').click(function(e) {
                     e.preventDefault();
                     var userId = $(this).data('id');
-                    console.log(userId);
                     Swal.fire({
                         title: 'Are you sure?',
                         text: "Once deleted, you will not be able to recover this user!",

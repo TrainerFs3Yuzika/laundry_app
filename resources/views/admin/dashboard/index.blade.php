@@ -187,7 +187,7 @@
                 @endif
     </script>
 
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     $(function() {
         $('input[data-daterange="true"]').daterangepicker({
             opens: 'left'
@@ -195,6 +195,6 @@
             console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         });
     });
-    </script>
+    </script> --}}
 @endpush
 

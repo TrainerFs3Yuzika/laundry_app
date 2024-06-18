@@ -1,7 +1,7 @@
 <nav class="side-nav">
     <a href="/" class="intro-x flex items-center pl-5 pt-4">
         <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="{{asset("dist/images/logo.svg")}}">
-        <span class="hidden xl:block text-white text-lg ml-3">Laundry App</span>
+        <span class="hidden xl:block text-white text-lg ml-3">BW Laundry</span>
     </a>
     <div class="side-nav__divider my-6"></div>
     <ul>
@@ -24,7 +24,7 @@
                 <div class="side-menu__title">Service</div>
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ route('categories.index') }}" class="side-menu {{ Route::is('categories.index') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="tag"></i></div>
                 <div class="side-menu__title">Categories</div>
@@ -35,7 +35,7 @@
                 <div class="side-menu__icon"><i data-feather="users"></i></div>
                 <div class="side-menu__title">Transaction</div>
             </a>
-        </li>
+        </li> --}}
         <li>
             <a href="{{ route('admin.orders') }}" class="side-menu {{ Route::is('admin.orders') ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon"><i data-feather="shopping-cart"></i></div>
