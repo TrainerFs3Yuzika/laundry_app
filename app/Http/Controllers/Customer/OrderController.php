@@ -4,102 +4,112 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Service;
+use App\Models\Setting;
 use Midtrans\Snap;
 use Midtrans\Notification;
+use App\Models\Discount;
 use Midtrans\Config;
 use Illuminate\Support\Facades\Log;
-use illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class OrderController extends Controller
 {
     public function index()
     {
+        $setting = Setting::first();
         $services = Service::all();
         $user = auth()->user();
-        return view('customer.order.index', compact('services', 'user'));
+        return view('customer.order.index', compact('services', 'user', 'setting'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $cart = json_decode($request->input('cart'), true);
-
-    //     try {
-    //         // Perform order creation logic here
-    //         $taxRate = 0.10; // Tax rate 10%
-    //         $order = new Order();
-    //         $order->user_id = auth()->id();
-    //         $subtotal = array_reduce($cart, function ($sum, $item) {
-    //             return $sum + ($item['price'] * $item['qty']);
-    //         }, 0);
-    //         $taxAmount = $subtotal * $taxRate;
-    //         $order->total_price = $subtotal + $taxAmount;
-    //         $order->save();
-
-    //         // Save each item in the cart to the database
-    //         foreach ($cart as $item) {
-    //             $order->items()->create([
-    //                 'service_id' => $item['id'],
-    //                 'quantity' => $item['qty'],
-    //                 'price' => $item['price'],
-    //             ]);
-    //         }
-
-    //         return redirect()->route('customer.orders')->with('success', 'Order placed successfully!');
-    //     } catch (\Exception $e) {
-    //         return redirect()->route('customer.orders')->with('error', 'An error occurred while placing the order.');
-    //     }
-
-    // }
     public function store(Request $request)
     {
         $cart = json_decode($request->input('cart'), true);
+        $discount = $request->input('discount', 0);
+
+        $user = Auth::user();
+        $setting = Setting::first();
 
         try {
-            $taxRate = 0.10; // Tax rate 10%
-            $order = new Order();
-            $order->user_id = auth()->id();
-            $subtotal= array_reduce($cart, function ($sum, $item) {
-                return $sum + ($item['price'] * $item['qty']);
-            }, 0);
+        $subtotal = array_reduce($cart, function ($carry, $item) {
+            return $carry + ($item['price'] * $item['qty']);
+        }, 0);
 
-            $taxAmount = $subtotal * $taxRate;
-            $order->total_price = $subtotal + $taxAmount;
-            $order->save();
+        $discountAmount = $subtotal * ($discount / 100);
+        $tax = ($subtotal - $discountAmount) * ($setting->tax / 100);
+        $total = $subtotal - $discountAmount + $tax;
 
-            foreach ($cart as $item) {
-                $order->items()->create([
-                    'service_id' => $item['id'],
-                    'quantity' => $item['qty'],
-                    'price' => $item['price'],
-                ]);
-            }
+        $order = Order::create([
+            'user_id' => $user->id,
+            'total_price' => $total,
+            'discount_amount' => $discountAmount,
+            'discount_code' => $request->input('discount_code', null),
+            'tax' => $setting->tax,
+            'tax_amount' => $tax,
+            'status' => 'pending',
+        ]);
 
-            return redirect()->route('customer.orders')->with('success', 'Order placed successfully!');
-        } catch (\Exception $e) {
-            return redirect()->route('customer.orders')->with('error', 'An error occurred while placing the order.');
+        foreach ($cart as $item) {
+            OrderItem::create([
+                'order_id' => $order->id,
+                'service_id' => $item['id'],
+                'quantity' => $item['qty'],
+                'price' => $item['price'],
+            ]);
+        }
+
+        return redirect()->route('customer.orders')->with('success', 'Order placed successfully!');
+    } catch (\Exception $e) {
+        return redirect()->route('customer.orders')->with('error', 'An error occurred while placing the order.');
+    }
+
+    }
+    public function checkDiscount(Request $request)
+    {
+        $code = $request->query('code');
+        $discount = Discount::where('code', $code)->first();
+
+        if ($discount) {
+            return response()->json([
+                'success' => true,
+                'discount' => $discount->percentage
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid discount code.'
+            ]);
         }
     }
 
 
-    public function invoice(Order $order)
-    {
-        return view('customer.order.invoice', compact('order'));
-    }
-
 
     public function pay(Order $order)
     {
-        // Hitung total harga termasuk pajak
-        $taxRate = 0.10; // 10%
-        $totalPrice = $order->items->sum(function ($item) use ($taxRate) {
-            $taxAmount = $item->price * $taxRate;
-            return ($item->price + $taxAmount) * $item->quantity;
+        $settings = Setting::first();
+        $taxRate = $settings->tax / 100; // Tax rate from settings
+
+        // Hitung subtotal setelah diskon
+        $subtotal = $order->items->sum(function ($item) {
+            return $item->price * $item->quantity;
         });
 
-        // DD($totalPrice);
+        // Hitung jumlah diskon
+        $discountAmount = $order->discount_amount;
+
+        // Hitung subtotal setelah diskon
+        $subtotalAfterDiscount = $subtotal - $discountAmount;
+
+        // Hitung pajak dari subtotal setelah diskon
+        $taxAmount = $subtotalAfterDiscount * $taxRate;
+
+        // Hitung total harga akhir
+        $totalPrice = $subtotalAfterDiscount + $taxAmount;
 
         // Konfigurasi Midtrans
         Config::$serverKey = config('midtrans.server_key');
@@ -117,9 +127,16 @@ class OrderController extends Controller
                 'first_name' => Auth::user()->name,
                 'email' => Auth::user()->email,
             ],
-            'item_details' => $order->items->map(function ($item) use ($taxRate) {
-                $taxAmount = $item->price * $taxRate;
-                $totalItemPrice = $item->price + $taxAmount;
+            'item_details' => $order->items->map(function ($item) use ($discountAmount, $subtotal, $taxRate) {
+                // Hitung diskon per item
+                $itemDiscount = ($item->price * $item->quantity / $subtotal) * $discountAmount;
+                // Hitung harga setelah diskon
+                $priceAfterDiscount = ($item->price * $item->quantity - $itemDiscount) / $item->quantity;
+                // Hitung pajak per item
+                $taxAmount = $priceAfterDiscount * $taxRate;
+                // Hitung harga total item setelah pajak
+                $totalItemPrice = $priceAfterDiscount + $taxAmount;
+
                 return [
                     'id' => $item->id,
                     'price' => $totalItemPrice,
@@ -135,6 +152,8 @@ class OrderController extends Controller
         // Tampilkan halaman pembayaran
         return view('customer.payment.index', compact('order', 'snapToken', 'totalPrice'));
     }
+
+
 
     public function notificationHandler(Request $request)
     {
@@ -186,33 +205,52 @@ class OrderController extends Controller
         }
     }
 
-public function history()
-{
-    $user = auth()->user();
-    $orders = Order::where('user_id', $user->id)->with('items.service')->get();
-    $completedOrders = $orders->where('status_order', 'completed')->whereNull('rating');
 
-    return view('customer.order.history', compact('orders', 'completedOrders', 'user'));
-}
+    public function history()
+    {
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)->with('items.service')->get();
+        $completedOrders = $orders->where('status_order', 'completed')->whereNull('rating');
 
-public function updateRating(Request $request, Order $order)
-{
-    $request->validate([
-        'rating' => 'required|integer|min:1|max:5',
-        'review' => 'required|string|max:255',
-    ]);
+        return view('customer.order.history', compact('orders', 'completedOrders', 'user'));
+    }
 
-    $order->update([
-        'rating' => $request->rating,
-        'review' => $request->review,
-    ]);
+    public function updateRating(Request $request, Order $order)
+    {
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'review' => 'required|string|max:255',
+        ]);
 
-    return redirect()->route('customer.orders.history')->with('success', 'Thank you for your feedback!');
-}
+        $order->update([
+            'rating' => $request->rating,
+            'review' => $request->review,
+        ]);
 
+        return redirect()->route('customer.orders.history')->with('success', 'Thank you for your feedback!');
+    }
+    public function invoice(Order $order)
+    {
+        $user = Auth::user();
 
+        // Check if the user is admin or the customer who owns the order
+        if ($user->role == 'admin' || ($user->role == 'customer' && $order->user_id == $user->id)) {
+            return view('customer.order.invoice', compact('order'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
 
+    public function downloadInvoice(Order $order)
+    {
+        $user = Auth::user();
 
-
-
+        // Check if the user is admin or the customer who owns the order
+        if ($user->role == 'admin' || ($user->role == 'customer' && $order->user_id == $user->id)) {
+            $pdf = PDF::loadView('customer.order.invoice-pdf', compact('order'));
+            return $pdf->download('invoice-' . $order->id . '.pdf');
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
 }

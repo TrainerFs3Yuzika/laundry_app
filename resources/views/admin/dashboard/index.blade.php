@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $orders_paid }}</div>
-                            <div class="text-base text-gray-600 mt-1">Item Sales</div>
+                            <div class="text-base text-gray-600 mt-1">Paid Transaction</div>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{$orders}}</div>
-                            <div class="text-base text-gray-600 mt-1">New Orders</div>
+                            <div class="text-base text-gray-600 mt-1">Total Orders</div>
                         </div>
                     </div>
                 </div>
@@ -73,14 +73,12 @@
         </div>
         <!-- END: General Report -->
         <!-- BEGIN: Sales Report -->
-        <div class="col-span-12 lg:col-span-6 mt-8">
+        <div class="col-span-12 lg:col-span-8 mt-6">
             <div class="intro-y block sm:flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
                     Sales Report
                 </h2>
                 <div class="sm:ml-auto mt-3 sm:mt-0 relative text-gray-700">
-                    <i data-feather="calendar" class="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"></i>
-                    <input type="text" data-daterange="true" class="datepicker input w-full sm:w-56 box pl-10">
                 </div>
             </div>
             <div class="intro-y box p-5 mt-12 sm:mt-5">
@@ -99,102 +97,86 @@
 
                 </div>
                 <div class="report-chart">
-                    <canvas id="report-line-chart" height="160" class="mt-6"></canvas>
+                    <div id="report-line-chart2"></div>
                 </div>
             </div>
         </div>
-        <!-- END: Sales Report -->
-        <!-- BEGIN: Weekly Top Seller -->
-        <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
+        <div class="col-span-12 xl:col-span-4 mt-6">
             <div class="intro-y flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
-                    Weekly Top Seller
+                    Weekly Best Sellers
                 </h2>
-                <a href="" class="ml-auto text-theme-1 truncate">See all</a>
             </div>
-            <div class="intro-y box p-5 mt-5">
-                <canvas class="mt-3" id="report-pie-chart" height="280"></canvas>
-                <div class="mt-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-theme-11 rounded-full mr-3"></div>
-                        <span class="truncate">17 - 30 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">62%</span>
+            <div class="mt-5">
+                @foreach($weekly_best_sellers as $seller)
+                    <div class="intro-y">
+                        <div class="box px-4 py-4 mb-3 flex items-center zoom-in">
+                            <div class="ml-4 mr-auto">
+                                <div class="font-medium">{{ $seller->name_service }}</div>
+                                <div class="text-gray-600 text-xs">{{ $seller->created_at->format('d M Y') }}</div>
+                            </div>
+                            <div class="py-1 px-2 rounded-full text-xs bg-theme-9 text-white cursor-pointer font-medium">{{ $seller->total_sales }} Sales</div>
+                        </div>
                     </div>
-                    <div class="flex items-center mt-4">
-                        <div class="w-2 h-2 bg-theme-1 rounded-full mr-3"></div>
-                        <span class="truncate">31 - 50 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">33%</span>
-                    </div>
-                    <div class="flex items-center mt-4">
-                        <div class="w-2 h-2 bg-theme-12 rounded-full mr-3"></div>
-                        <span class="truncate">>= 50 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">10%</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-        <!-- END: Weekly Top Seller -->
-        <!-- BEGIN: Sales Report -->
-        <div class="col-span-12 sm:col-span-6 lg:col-span-3 mt-8">
-            <div class="intro-y flex items-center h-10">
-                <h2 class="text-lg font-medium truncate mr-5">
-                    Sales Report
-                </h2>
-                <a href="" class="ml-auto text-theme-1 truncate">See all</a>
-            </div>
-            <div class="intro-y box p-5 mt-5">
-                <canvas class="mt-3" id="report-donut-chart" height="280"></canvas>
-                <div class="mt-8">
-                    <div class="flex items-center">
-                        <div class="w-2 h-2 bg-theme-11 rounded-full mr-3"></div>
-                        <span class="truncate">17 - 30 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">62%</span>
-                    </div>
-                    <div class="flex items-center mt-4">
-                        <div class="w-2 h-2 bg-theme-1 rounded-full mr-3"></div>
-                        <span class="truncate">31 - 50 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">33%</span>
-                    </div>
-                    <div class="flex items-center mt-4">
-                        <div class="w-2 h-2 bg-theme-12 rounded-full mr-3"></div>
-                        <span class="truncate">>= 50 Years old</span>
-                        <div class="h-px flex-1 border border-r border-dashed border-gray-300 mx-3 xl:hidden"></div>
-                        <span class="font-medium xl:ml-auto">10%</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+    </div>
 </div>
 @endsection
+
 @push('script')
+<!-- Include ApexCharts -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 <script>
-     @if (session('success'))
-                   $.toast({
-                    text: "{{ session('success') }}" ,
-                    bgColor: '#41B06E',
-                    textColor: 'white',
-                    allowToastClose: true,
-                    hideAfter: 5000,
-                    stack: 5,
-                    textAlign: 'left',
-                    position: 'top-right',
-                });
-                @endif
-    </script>
-
-{{-- <script type="text/javascript">
-    $(function() {
-        $('input[data-daterange="true"]').daterangepicker({
-            opens: 'left'
-        }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    @if (session('success'))
+        $.toast({
+            text: "{{ session('success') }}" ,
+            bgColor: '#41B06E',
+            textColor: 'white',
+            allowToastClose: true,
+            hideAfter: 5000,
+            stack: 5,
+            textAlign: 'left',
+            position: 'top-right',
         });
-    });
-    </script> --}}
-@endpush
+    @endif
 
+    // Render the sales chart using ApexCharts
+    var options = {
+        chart: {
+            type: 'line',
+            height: 350
+        },
+        series: [{
+            name: 'Sales',
+            data: @json($sales_data->pluck('total_sales')->map(function($value) { return $value / 100000; }))
+        }],
+        xaxis: {
+            categories: @json($sales_data->pluck('date')->map(function($date) { return \Carbon\Carbon::parse($date)->format('d M'); }))
+        },
+        yaxis: {
+            labels: {
+                formatter: function (value) {
+                    return new Intl.NumberFormat().format(value * 100000); // Multiply back to original scale for display
+                }
+            },
+            title: {
+                text: 'Sales (in hundreds of thousands)'
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: function (value) {
+                    return new Intl.NumberFormat().format(value * 100000); // Multiply back to original scale for display
+                }
+            }
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#report-line-chart2"), options);
+    chart.render();
+</script>
+@endpush

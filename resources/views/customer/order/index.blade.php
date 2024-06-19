@@ -2,39 +2,39 @@
 @section('title', 'Pesan | Laundry App')
 
 @section('content')
-@if (session('success'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '{{ session('success') }}',
-            showCancelButton: true,
-            cancelButtonText: 'Close',
-            confirmButtonText: 'Proceed to Payment',
-            buttonsStyling: true,
-            reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = '{{ route('customer.orders.history')}}';
-            }
-        });
-    });
-    </script>
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    showCancelButton: true,
+                    cancelButtonText: 'Close',
+                    confirmButtonText: 'Proceed to Payment',
+                    buttonsStyling: true,
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '{{ route('customer.orders.history') }}';
+                    }
+                });
+            });
+        </script>
+    @endif
 
-@endif
+    @if (session('error'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{{ session('error') }}',
+                });
+            });
+        </script>
+    @endif
 
-@if (session('error'))
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: '{{ session('error') }}',
-        });
-    });
-</script>
-@endif
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
             Point of Sale
@@ -59,13 +59,13 @@
             </div>
             <div class="grid grid-cols-12 gap-5 mt-5">
                 @foreach ($services as $service)
-                @if($service->status == 'active')
-                    <div class="col-span-12 sm:col-span-4 xxl:col-span-3 box p-5 cursor-pointer zoom-in">
-                        <div class="font-medium text-base">{{ $service->name_service }}</div>
-                        <div class="text-theme-3"> <strong>{{ formatRupiah($service->price) }}</strong></div>
-                    </div>
-                @endif
-            @endforeach
+                    @if ($service->status == 'active')
+                        <div class="col-span-12 sm:col-span-4 xxl:col-span-3 box p-5 cursor-pointer zoom-in">
+                            <div class="font-medium text-base">{{ $service->name_service }}</div>
+                            <div class="text-theme-3"> <strong>{{ formatRupiah($service->price) }}</strong></div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <!-- END: Item List -->
@@ -74,8 +74,8 @@
             <div class="intro-y pr-1">
                 <div class="box p-2">
                     <div class="pos__tabs nav-tabs justify-center flex">
-                        <a data-toggle="tab" data-target="#ticket" href="javascript:;"
-                            class="flex-1 py-2 rounded-md text-center active">Ticket</a>
+                        <a data-toggle="tab" data-target="#ticket"
+                            class="flex-1 py-2 rounded-md text-center active">Cart</a>
                     </div>
                 </div>
             </div>
@@ -86,11 +86,12 @@
                     </div>
                     <div class="box flex p-5 mt-5">
                         <div class="w-full relative text-gray-700">
-                            <input type="text" class="input input--lg w-full bg-gray-200 pr-10 placeholder-theme-13"
+                            <input type="text" id="discount_code"
+                                class="input input--lg w-full bg-gray-200 pr-10 placeholder-theme-13"
                                 placeholder="Use coupon code...">
                             <i class="w-4 h-4 hidden sm:absolute my-auto inset-y-0 mr-3 right-0" data-feather="search"></i>
                         </div>
-                        <button class="button text-white bg-theme-1 ml-2">Apply</button>
+                        <button class="button text-white bg-theme-1 ml-2" id="apply-discount">Apply</button>
                     </div>
                     <div class="box p-5 mt-5">
                         <div class="flex">
@@ -99,11 +100,11 @@
                         </div>
                         <div class="flex mt-4">
                             <div class="mr-auto">Discount</div>
-                            <div class="text-theme-6">-</div>
+                            <div id="discount" class="text-red-600">-</div>
                         </div>
                         <div class="flex mt-4">
                             <div class="mr-auto">Tax</div>
-                            <div id="tax-rate" data-tax-rate="0.10">10%</div>
+                            <div id="tax-rate" data-tax-rate="{{ $setting->tax }}">{{ $setting->tax }}%</div>
                             <!-- Add a data attribute to store the tax rate -->
                         </div>
                         <div class="flex mt-4 pt-4 border-t border-gray-200">
@@ -121,7 +122,6 @@
             </div>
         </div>
         <!-- END: Ticket -->
-
     </div>
     <!-- BEGIN: Add Item Modal -->
     <div class="modal" id="add-item-modal">
@@ -145,10 +145,6 @@
                             id="increase-qty">+</button>
                     </div>
                 </div>
-                {{-- <div class="col-span-12">
-                    <label>Notes</label>
-                    <textarea class="input w-full border mt-2 flex-1" id="item-notes" placeholder="Item notes"></textarea>
-                </div> --}}
             </div>
             <div class="px-5 py-3 text-right border-t border-gray-200">
                 <button type="button" data-dismiss="modal" class="button w-24 border text-gray-700 mr-1">Cancel</button>
@@ -202,12 +198,14 @@
     <form id="order-form" action="{{ route('customer.orders.store') }}" method="POST" style="display: none;">
         @csrf
         <input type="hidden" name="cart" id="order-cart">
+        <input type="hidden" name="discount" id="order-discount">
     </form>
 @endsection
 
 @push('script')
     <script>
         let cart = [];
+        let discount = 0;
 
         document.querySelectorAll('.box.cursor-pointer').forEach(item => {
             item.addEventListener('click', () => {
@@ -218,7 +216,6 @@
                 document.getElementById('item-name').innerText = itemName;
                 document.getElementById('item-price').innerText = itemPrice;
                 document.getElementById('item-qty').value = 1;
-                // document.getElementById('item-notes').value = '';
 
                 $('#add-item-modal').modal('show');
             });
@@ -242,20 +239,39 @@
             const itemPrice = parseInt(document.getElementById('item-price').innerText.replace('Rp', '').replace(
                 '.', ''));
             const itemQty = parseInt(document.getElementById('item-qty').value);
-            // const itemNotes = document.getElementById('item-notes').value;
 
             const item = {
                 id: cart.length + 1,
                 name: itemName,
                 price: itemPrice,
                 qty: itemQty,
-                // notes: itemNotes
             };
 
             cart.push(item);
 
             $('#add-item-modal').modal('hide');
             updateCart();
+        });
+
+        document.getElementById('apply-discount').addEventListener('click', () => {
+            const discountCode = document.getElementById('discount_code').value;
+
+            // Check discount code against the database
+            fetch(`{{ route('check.discount') }}?code=${discountCode}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        discount = data.discount;
+                    } else {
+                        discount = 0;
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Invalid Discount Code',
+                            text: 'The discount code you entered is invalid.',
+                        });
+                    }
+                    updateCart();
+                });
         });
 
         function updateCart() {
@@ -268,25 +284,27 @@
                 const itemTotal = item.price * item.qty;
                 subtotal += itemTotal;
                 ticketItems.innerHTML += `
-                    <div class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md" data-id="${item.id}">
-                        <div class="pos__ticket__item-name truncate mr-1">${item.name}</div>
-                        <div class="text-gray-600">x ${item.qty}kg</div>
-                        <i data-feather="edit" class="w-4 h-4 text-gray-600 ml-2 edit-item" data-id="${item.id}"></i>
-                        <div class="ml-auto">${formatRupiah(itemTotal)}</div>
-                        <i data-feather="trash" class="w-4 h-4 text-gray-600 ml-2 delete-item" data-id="${item.id}"></i>
-                    </div>
-                `;
+                <div class="flex items-center p-3 cursor-pointer transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md" data-id="${item.id}">
+                    <div class="pos__ticket__item-name truncate mr-1">${item.name}</div>
+                    <div class="text-gray-600">x ${item.qty}kg</div>
+                    <i data-feather="edit" class="w-4 h-4 text-gray-600 ml-2 edit-item" data-id="${item.id}"></i>
+                    <div class="ml-auto">${formatRupiah(itemTotal)}</div>
+                    <i data-feather="trash" class="w-4 h-4 text-gray-600 ml-2 delete-item" data-id="${item.id}"></i>
+                </div>
+            `;
                 feather.replace();
             });
 
+            const discountAmount = subtotal * (discount / 100);
 
             const taxRateElement = document.getElementById('tax-rate');
-            const taxRate = parseFloat(taxRateElement.getAttribute('data-tax-rate')); // Convert to float
+            const taxRate = parseFloat(taxRateElement.getAttribute('data-tax-rate')) / 100; // Convert to decimal
 
-            const tax = subtotal * taxRate;
-            const totalCharge = Math.round(subtotal + tax);
+            const tax = (subtotal - discountAmount) * taxRate;
+            const totalCharge = Math.round(subtotal - discountAmount + tax);
 
             document.getElementById('subtotal').innerText = formatRupiah(subtotal);
+            document.getElementById('discount').innerText = formatRupiah(discountAmount);
             document.getElementById('total-charge').innerText = formatRupiah(totalCharge);
 
             document.querySelectorAll('.edit-item').forEach(editButton => {
@@ -297,7 +315,6 @@
                     document.getElementById('item-name').innerText = item.name;
                     document.getElementById('item-price').innerText = `Rp ${item.price}`;
                     document.getElementById('item-qty').value = item.qty;
-                    // document.getElementById('item-notes').value = item.notes;
 
                     $('#add-item-modal').modal('show');
                     cart = cart.filter(i => i.id != itemId);
@@ -320,7 +337,6 @@
 
         document.getElementById('charge-items').addEventListener('click', () => {
             if (cart.length === 0) {
-              // Show alert using SweetAlert
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -330,7 +346,6 @@
                 return;
             }
 
-            // Show checkout modal
             $('#checkout-modal').modal('show');
 
             const checkoutItems = document.getElementById('checkout-items');
@@ -338,26 +353,28 @@
 
             cart.forEach(item => {
                 checkoutItems.innerHTML += `
-                    <div class="flex items-center p-3 bg-gray-200 rounded-md mb-2">
-                        <div class="mr-auto">${item.name} x ${item.qty}kg</div>
-                        <div class="font-medium">${formatRupiah(item.price * item.qty)}</div>
-                    </div>
-                `;
+                <div class="flex items-center p-3 bg-gray-200 rounded-md mb-2">
+                    <div class="mr-auto">${item.name} x ${item.qty}kg</div>
+                    <div class="font-medium">${formatRupiah(item.price * item.qty)}</div>
+                </div>
+            `;
             });
 
-            // Get the tax rate from the view
-            const taxRateElement = document.getElementById('tax-rate');
-            const taxRate = parseFloat(taxRateElement.getAttribute('data-tax-rate')); // Convert to float
-
             const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-            const tax = subtotal * taxRate;
-            const total = Math.round(subtotal + tax);
+            const discountAmount = subtotal * (discount / 100);
+
+            const taxRateElement = document.getElementById('tax-rate');
+            const taxRate = parseFloat(taxRateElement.getAttribute('data-tax-rate')) / 100; // Convert to decimal
+
+            const tax = (subtotal - discountAmount) * taxRate;
+            const total = Math.round(subtotal - discountAmount + tax);
             document.getElementById('checkout-total').innerText = formatRupiah(total);
         });
 
         document.getElementById('confirm-checkout').addEventListener('click', () => {
             const orderData = JSON.stringify(cart);
             document.getElementById('order-cart').value = orderData;
+            document.getElementById('order-discount').value = discount; // Save discount as percentage
             document.getElementById('order-form').submit();
         });
 

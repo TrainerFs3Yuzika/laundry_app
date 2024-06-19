@@ -19,7 +19,9 @@ class Order extends Model
         'tracking_number',
         'status_order',
         'rating',
-        'review'
+        'review',
+        'discount_amount',
+        'discount_code',
 
     ];
 
@@ -35,5 +37,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function discount()
+    {
+        return $this->belongsTo(Discount::class);
+    }
 }
 

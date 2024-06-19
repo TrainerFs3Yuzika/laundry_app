@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Setting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +24,10 @@ class AppServiceProvider extends ServiceProvider
         // if(config('app.env') === 'local') {
         //     \URL::forceScheme('https');
         // }
+        $setting = Setting::first();
+
+        // Share the website title with all views
+        View::share('setting', $setting);
+
     }
 }

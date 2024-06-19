@@ -8,7 +8,7 @@
             <div class="col-span-12 mt-8">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
-                        General Report
+                        Welcome <span class="text-xl font-bold text-theme-1">{{ auth()->user()->name }}</span>
                     </h2>
                     <a href="" class="ml-auto flex text-theme-1">
                         <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div class="text-3xl font-bold leading-8 mt-6">{{ $totalServices }}</div>
-                                <div class="text-base text-gray-600 mt-1">Item Sales</div>
+                                <div class="text-base text-gray-600 mt-1">Service Items</div>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="text-3xl font-bold leading-8 mt-6">{{ $totalOrders }}</div>
-                                <div class="text-base text-gray-600 mt-1">New Orders</div>
+                                <div class="text-base text-gray-600 mt-1">Total Orders</div>
                             </div>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                     position: 'top-right',
                 });
                 @endif
-  
+
         $(document).ready(function() {
             $('#tracking-form').on('submit', function(e) {
                 e.preventDefault();

@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\Order;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
+
     {
+        $setting = Setting::first();
         $totalOrders = Order::where('user_id', auth()->id())->count();
         $totalServices = Service::count();
-        return view('customer.dashboard.index', compact('totalServices', 'totalOrders'));
+        return view('customer.dashboard.index', compact('totalServices', 'totalOrders', 'setting'));
     }
 
     public function trackOrder(Request $request)

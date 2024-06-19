@@ -30,13 +30,24 @@ Route::controller('App\Http\Controllers\AuthController')->group(function () {
     Route::post('/register', 'register')->name('register.post');
 });
 
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::controller('App\Http\Controllers\ProfileController')->group(function () {
+        Route::get('/profile', 'index')->name('profile.index');
+        Route::post('/profile', 'updateProfile')->name('profile.update');
+        Route::post('/profile/password', 'updatePassword')->name('profile.password');
+    });
+});
+
+
 //Dashboard
 Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     Route::controller('App\Http\Controllers\Admin\DashboardController')->group(function () {
         Route::get('/dashboard', 'index')->name('admin.dashboard');
     });
     //Users
-    Route::controller('App\Http\Controllers\UserController')->group(function () {
+    Route::controller('App\Http\Controllers\Admin\UserController')->group(function () {
         Route::get('/users', 'index')->name('admin.users');
         Route::get('/users/create', 'create')->name('admin.users.create');
         Route::post('/users/store', 'store')->name('admin.users.store');
@@ -46,31 +57,22 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
     });
 
     //product
-    Route::resource('services', App\Http\Controllers\ServiceController::class)->except([]);
+    Route::resource('services', App\Http\Controllers\Admin\ServiceController::class)->except([]);
 
-    //Categories
-    Route::resource('categories', App\Http\Controllers\CategoryController::class)->except([]);
-
-    //Transaction
-    Route::controller('App\Http\Controllers\TransactionController')->group(function () {
-        Route::get('/transactions', 'index')->name('transactions');
-        Route::get('/transactions/create', 'create')->name('admin.transactions.create');
-        Route::post('/transactions/store', 'store')->name('admin.transactions.store');
-        Route::get('/transactions/edit/{id}', 'edit')->name('admin.transactions.edit');
-        Route::put('/transactions/update/{id}', 'update')->name('admin.transactions.update');
-        Route::delete('/transactions/{id}', 'destroy')->name('admin.transactions.destroy');
-    });
 
     //order
     Route::controller('App\Http\Controllers\Admin\OrderController')->group(function () {
         Route::get('/orders', 'index')->name('admin.orders');
         Route::post('/orders/update-status/{id}', 'updateStatus')->name('admin.orders.updateStatus');
+        Route::get('/invoice/{order}', 'invoice')->name('admin.orders.invoice');
+        Route::get('/orders/{order}/invoice-download', 'downloadInvoice')->name('admin.orders.invoice-download');
     });
 
     //setting
     Route::controller('App\Http\Controllers\Admin\SettingController')->group(function () {
         Route::get('/settings', 'index')->name('admin.settings');
         Route::put('/settings/update', 'update')->name('admin.settings.update');
+
     });
 
     //ratings
@@ -78,15 +80,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function () {
         Route::get('/ratings', 'index')->name('admin.ratings');
     });
 
-    //Role
-    // Route::controller('App\Http\Controllers\RoleController')->group(function () {
-    //     Route::get('/roles', 'index')->name('admin.roles');
-    //     Route::get('/roles/create', 'create')->name('admin.roles.create');
-    //     Route::post('/roles/store', 'store')->name('admin.roles.store');
-    //     Route::get('/roles/edit/{id}', 'edit')->name('admin.roles.edit');
-    //     Route::put('/roles/update/{id}', 'update')->name('admin.roles.update');
-    //     Route::delete('/roles/{id}', 'destroy')->name('admin.roles.destroy');
-    // });
+    Route::resource('discounts', App\Http\Controllers\Admin\DiscountController::class);
 
 });
 
@@ -105,12 +99,13 @@ Route::group(['middleware' => ['auth', 'checkRole:customer'], 'prefix' => 'custo
         Route::get('/orders/history', 'history')->name('customer.orders.history');
         Route::get('/payment/{order}', 'pay')->name('customer.payment');
         Route::patch('/orders/{order}/rating', 'updateRating')->name('customer.orders.updateRating');
+        Route::get('/orders/{order}/invoice-download', 'downloadInvoice')->name('customer.orders.invoice-download');
+        //check-discount
+        Route::get('/check-discount', 'checkDiscount')->name('check.discount');
+
     });
 
-
-
 });
-
 
 //midtrans
 Route::post('midtrans/notification', 'App\Http\Controllers\Customer\OrderController@notificationHandler');

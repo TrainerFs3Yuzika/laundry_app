@@ -1,64 +1,38 @@
 <div class="top-bar">
     <!-- BEGIN: Breadcrumb -->
     <div class="-intro-x breadcrumb mr-auto hidden sm:flex">
-        <a href="{{ url('/') }}" class="">Home</a>
-        <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <a href="{{ route('home') }}" class="">Home</a>
         @php
             $segments = Request::segments();
             $url = '';
-            $routes = [
-                'admin' => [
-                    'title' => 'Dashboard',
-                    'route' => 'admin.dashboard'
-                ],
-                'users' => [
-                    'title' => 'Users',
-                    'route' => 'admin.users'
-                ],
-                'services' => [
-                    'title' => 'Service',
-                    'route' => 'services.index'
-                ],
-                'categories' => [
-                    'title' => 'Categories',
-                    'route' => 'categories.index'
-                ],
-                'transactions' => [
-                    'title' => 'Transaction',
-                    'route' => 'transactions'
-                ],
-                'orders' => [
-                    'title' => 'Orders',
-                    'route' => 'admin.orders'
-                ],
-                'customer' => [
-                    'title' => 'Dashboard',
-                    'route' => 'customer.dashboard.index'
-                ],
-                'pesan-laundry' => [
-                    'title' => 'Pesan Laundry',
-                    'route' => 'customer.orders'
-                ],
-                'riwayat-pesanan' => [
-                    'title' => 'Riwayat Pesanan',
-                    'route' => 'customer.orders.history'
-                ]
-            ];
+            $prefix = auth()->user()->role == 'admin' ? '/dashboard' : '/customer/dashboard';
         @endphp
-        @foreach ($segments as $segment)
+        @foreach ($segments as $index => $segment)
             @php
+                // Adjust segment for customer role
+                if ($index === 0 && auth()->user()->role == 'customer') {
+                    $segment = 'customer';
+                }
+
+                // Build URL
                 $url .= '/' . $segment;
-                $routeInfo = $routes[$segment] ?? null;
-                $title = $routeInfo['title'] ?? ucfirst($segment);
+
+                // Format title
+                $title = ucfirst(str_replace('-', ' ', $segment));
+
+                // Check if it's the last segment
+                $isLastSegment = $index === count($segments) - 1;
             @endphp
-            @if ($loop->last) {{-- Check if it is the last segment --}}
-                <a href="{{ $routeInfo ? route($routeInfo['route']) : url($url) }}" class="breadcrumb--active">{{ $title }}</a>
+            <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+            @if ($isLastSegment)
+                <span class="breadcrumb--active">{{ $title }}</span>
             @else
-                <a href="{{ $routeInfo ? route($routeInfo['route']) : url($url) }}" class="">{{ $title }}</a>
-                <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+                <a href="{{ url($url) }}">{{ $title }}</a>
             @endif
         @endforeach
     </div>
+
+
 
 
     <!-- END: Breadcrumb -->
@@ -156,10 +130,12 @@
                     <div class="text-xs text-theme-41">{{ Auth::user()->role }}</div>
                 </div>
                 <div class="p-2">
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                    <a href="{{route('admin.users')}}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
-                    <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
+                    <a href="{{route('profile.index')}}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                    @if(auth()->user()->role == 'admin')
+                    <a href="{{ route('admin.users') }}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md">
+                        <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account
+                    </a>
+                @endif
                 </div>
                 <div class="p-2 border-t border-theme-40">
                     <a href="{{route('logout')}}" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>

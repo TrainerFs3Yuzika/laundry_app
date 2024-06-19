@@ -6,6 +6,8 @@ use App\Models\Order;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -64,6 +66,31 @@ class OrderController extends Controller
             return response()->json(['success' => true, 'message' => 'Order status updated successfully']);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function invoice(Order $order)
+    {
+        $user = Auth::user();
+
+        // Check if the user is admin or the customer who owns the order
+        if ($user->role == 'admin' || ($user->role == 'customer' && $order->user_id == $user->id)) {
+            return view('customer.order.invoice', compact('order'));
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
+    }
+
+    public function downloadInvoice(Order $order)
+    {
+        $user = Auth::user();
+
+        // Check if the user is admin or the customer who owns the order
+        if ($user->role == 'admin' || ($user->role == 'customer' && $order->user_id == $user->id)) {
+            $pdf = PDF::loadView('customer.order.invoice-pdf', compact('order'));
+            return $pdf->download('invoice-' . $order->id . '.pdf');
+        } else {
+            abort(403, 'Unauthorized action.');
         }
     }
 }

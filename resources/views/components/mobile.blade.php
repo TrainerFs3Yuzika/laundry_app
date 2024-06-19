@@ -27,18 +27,6 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('categories.index') }}" class="menu {{ Route::is('categories.index') ? 'menu--active' : '' }}">
-                <div class="menu__icon"><i data-feather="tag"></i></div>
-                <div class="menu__title">Categories</div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('transactions') }}" class="menu {{ Route::is('transactions') ? 'menu--active' : '' }}">
-                <div class="menu__icon"><i data-feather="users"></i></div>
-                <div class="menu__title">Transaction</div>
-            </a>
-        </li>
-        <li>
             <a href="{{ route('admin.orders') }}" class="menu {{ Route::is('admin.orders') ? 'menu--active' : '' }}">
                 <div class="menu__icon"><i data-feather="shopping-cart"></i></div>
                 <div class="menu__title">Orders</div>

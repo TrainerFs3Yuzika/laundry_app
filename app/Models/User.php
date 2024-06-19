@@ -19,10 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'role',
-        'password',
+        'name', 'email', 'password', 'phone', 'address', 'profile_photo_path', 'role',
     ];
 
     /**
@@ -44,8 +41,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function getProfilePhotoUrlAttribute()
+    {
+        return $this->profile_photo_path ? url($this->profile_photo_path) : 'dist/images/profile-11.jpg';
     }
 }
